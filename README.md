@@ -1,27 +1,45 @@
-# Easy Money Transfer Web App
+# 🚀 EasyMove - Smart Money Transfer App
 
-A simple and user-friendly web application for transferring money with just a few easy steps.
+EasyMove is an intelligent web application that makes international money transfers simple with automatic currency conversion.
 
-## Features
+## ✨ Features
 
-- 💰 **Balance Display**: View your current available balance
-- 💸 **Easy Transfers**: Send money with a simple form
-- 📝 **Transaction History**: Track all your recent transactions
-- 🔔 **Notifications**: Get instant feedback on your transfers
-- 💾 **Persistent Storage**: Your data is saved locally in your browser
-- 📱 **Responsive Design**: Works seamlessly on desktop and mobile devices
+- 💰 **Multi-Currency Balance**: View your balance in your preferred currency
+- 🌍 **Automatic Currency Conversion**: Send money in one currency, recipient receives in another
+- 📊 **Real-Time Exchange Rates**: See live conversion rates and amounts
+- 💸 **Smart Transfers**: Intelligent currency handling for seamless transactions
+- 📝 **Transaction History**: Track all transfers with currency conversion details
+- 🔔 **Smart Notifications**: Detailed feedback including conversion information
+- 💾 **Persistent Storage**: Your data and preferences are saved locally
+- 📱 **Responsive Design**: Works perfectly on desktop and mobile devices
+- 🎯 **User Preferences**: Remembers your preferred currencies
 
-## How to Use
+## 📖 How to Use
 
 1. **Open the App**: Simply open `index.html` in your web browser
-2. **Check Your Balance**: View your available balance at the top
-3. **Fill in Transfer Details**:
+2. **Set Your Currency**: Choose your preferred currency for balance display
+3. **Check Your Balance**: View your available balance in your chosen currency
+4. **Fill in Transfer Details**:
    - Enter the recipient's name
    - Enter their account number or email
+   - Select your sending currency
    - Specify the amount to transfer
+   - Select the recipient's preferred currency
    - Add an optional description
-4. **Send Money**: Click the "Send Money" button
-5. **View History**: See all your recent transactions below the form
+5. **See Live Conversion**: Watch the real-time conversion as you type
+6. **Send Money**: Click the "Send Money" button
+7. **View History**: See all your transactions with currency conversion details
+
+## 🌍 Supported Currencies
+
+- **USD** - US Dollar
+- **EUR** - Euro
+- **GBP** - British Pound
+- **JPY** - Japanese Yen
+- **CAD** - Canadian Dollar
+- **AUD** - Australian Dollar
+- **CHF** - Swiss Franc
+- **CNY** - Chinese Yuan
 
 ## Quick Start
 

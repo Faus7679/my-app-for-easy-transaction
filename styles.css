@@ -263,6 +263,79 @@ header h1 {
     animation: slideOut 0.3s ease;
 }
 
+/* Balance Card Styles */
+.balance-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.currency-selector {
+    width: auto !important;
+    min-width: 80px;
+    padding: 6px 10px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 6px;
+}
+
+.currency-selector option {
+    background: var(--bg-white);
+    color: var(--text-primary);
+}
+
+/* Currency Conversion Styles */
+.conversion-info {
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.conversion-info.hidden {
+    display: none;
+}
+
+.conversion-info p {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.conversion-info span {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.currency-conversion {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* Select styling */
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: var(--bg-white);
+    transition: border-color 0.2s;
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
 /* Responsive Design */
 @media (max-width: 640px) {
     body {
@@ -287,5 +360,9 @@ header h1 {
         right: 10px;
         left: 10px;
         max-width: none;
+    }
+
+    .conversion-info {
+        padding: 12px;
     }
 }
