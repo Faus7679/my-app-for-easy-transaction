@@ -5,14 +5,67 @@ let userCurrency = 'USD';
 
 // Exchange rates (USD as base) - In production, these would be fetched from a live API
 const exchangeRates = {
-    USD: 1.0,
-    EUR: 0.85,
-    GBP: 0.73,
-    JPY: 110.0,
-    CAD: 1.25,
-    AUD: 1.35,
-    CHF: 0.92,
-    CNY: 6.45
+    // Major Currencies
+    USD: 1.0,        // US Dollar (base)
+    EUR: 0.85,       // Euro
+    GBP: 0.73,       // British Pound
+    JPY: 110.0,      // Japanese Yen
+    CAD: 1.25,       // Canadian Dollar
+    AUD: 1.35,       // Australian Dollar
+    CHF: 0.92,       // Swiss Franc
+    CNY: 6.45,       // Chinese Yuan
+    
+    // Asian Currencies
+    INR: 74.5,       // Indian Rupee
+    KRW: 1180.0,     // South Korean Won
+    SGD: 1.35,       // Singapore Dollar
+    HKD: 7.8,        // Hong Kong Dollar
+    THB: 33.0,       // Thai Baht
+    MYR: 4.15,       // Malaysian Ringgit
+    PHP: 50.5,       // Philippine Peso
+    IDR: 14250.0,    // Indonesian Rupiah
+    VND: 23000.0,    // Vietnamese Dong
+    
+    // European Currencies
+    NOK: 8.6,        // Norwegian Krone
+    SEK: 8.9,        // Swedish Krona
+    DKK: 6.35,       // Danish Krone
+    PLN: 3.9,        // Polish Zloty
+    CZK: 21.8,       // Czech Koruna
+    HUF: 295.0,      // Hungarian Forint
+    RON: 4.2,        // Romanian Leu
+    BGN: 1.66,       // Bulgarian Lev
+    HRK: 6.4,        // Croatian Kuna
+    ISK: 129.0,      // Icelandic Krona
+    
+    // Americas Currencies
+    BRL: 5.2,        // Brazilian Real
+    MXN: 20.1,       // Mexican Peso
+    ARS: 98.5,       // Argentine Peso
+    CLP: 775.0,      // Chilean Peso
+    COP: 3850.0,     // Colombian Peso
+    PEN: 3.65,       // Peruvian Sol
+    UYU: 43.8,       // Uruguayan Peso
+    BOB: 6.9,        // Bolivian Boliviano
+    PYG: 6950.0,     // Paraguayan Guarani
+    
+    // Middle East & Africa
+    AED: 3.67,       // UAE Dirham
+    SAR: 3.75,       // Saudi Riyal
+    ILS: 3.25,       // Israeli Shekel
+    TRY: 8.45,       // Turkish Lira
+    EGP: 15.7,       // Egyptian Pound
+    ZAR: 14.8,       // South African Rand
+    NGN: 411.0,      // Nigerian Naira
+    GHS: 6.1,        // Ghanaian Cedi
+    KES: 108.5,      // Kenyan Shilling
+    UGX: 3520.0,     // Ugandan Shilling
+    TZS: 2310.0,     // Tanzanian Shilling
+    
+    // Others
+    RUB: 73.5,       // Russian Ruble
+    NZD: 1.42,       // New Zealand Dollar
+    FJD: 2.08        // Fijian Dollar
 };
 
 // Placeholder function for fetching live exchange rates
