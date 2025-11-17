@@ -62,6 +62,39 @@ const exchangeRates = {
     UGX: 3520.0,     // Ugandan Shilling
     TZS: 2310.0,     // Tanzanian Shilling
     
+    // Additional African Currencies
+    ETB: 47.5,       // Ethiopian Birr
+    RWF: 1025.0,     // Rwandan Franc
+    BWP: 11.2,       // Botswanan Pula
+    NAD: 14.8,       // Namibian Dollar
+    SZL: 14.8,       // Swazi Lilangeni
+    LSL: 14.8,       // Lesotho Loti
+    MWK: 820.0,      // Malawian Kwacha
+    ZMW: 16.8,       // Zambian Kwacha
+    AOA: 665.0,      // Angolan Kwanza
+    MZN: 63.8,       // Mozambican Metical
+    MGA: 4150.0,     // Malagasy Ariary
+    MUR: 45.2,       // Mauritian Rupee
+    SCR: 13.6,       // Seychellois Rupee
+    CVE: 93.5,       // Cape Verdean Escudo
+    STP: 20680.0,    // São Tomé and Príncipe Dobra
+    GMD: 52.5,       // Gambian Dalasi
+    GNF: 8650.0,     // Guinean Franc
+    SLL: 11420.0,    // Sierra Leonean Leone
+    LRD: 151.0,      // Liberian Dollar
+    XOF: 555.0,      // West African CFA Franc
+    XAF: 555.0,      // Central African CFA Franc
+    CDF: 2000.0,     // Congolese Franc
+    DJF: 178.0,      // Djiboutian Franc
+    ERN: 15.0,       // Eritrean Nakfa
+    SOS: 570.0,      // Somali Shilling
+    SDG: 445.0,      // Sudanese Pound
+    SSP: 130.0,      // South Sudanese Pound
+    LYD: 4.5,        // Libyan Dinar
+    TND: 2.8,        // Tunisian Dinar
+    DZD: 135.0,      // Algerian Dinar
+    MAD: 9.1,        // Moroccan Dirham
+    
     // Others
     RUB: 73.5,       // Russian Ruble
     NZD: 1.42,       // New Zealand Dollar

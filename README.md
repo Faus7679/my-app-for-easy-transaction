@@ -51,10 +51,28 @@ EasyMove is an intelligent web application that makes international money transf
 - **COP** - Colombian Peso | **PEN** - Peruvian Sol | **UYU** - Uruguayan Peso | **BOB** - Bolivian Boliviano
 - **PYG** - Paraguayan Guarani
 
-### Middle East & Africa
+### Middle East & Africa (Complete Coverage)
 - **AED** - UAE Dirham | **SAR** - Saudi Riyal | **ILS** - Israeli Shekel | **TRY** - Turkish Lira
-- **EGP** - Egyptian Pound | **ZAR** - South African Rand | **NGN** - Nigerian Naira | **GHS** - Ghanaian Cedi
-- **KES** - Kenyan Shilling | **UGX** - Ugandan Shilling | **TZS** - Tanzanian Shilling
+- **EGP** - Egyptian Pound | **LYD** - Libyan Dinar | **TND** - Tunisian Dinar | **DZD** - Algerian Dinar | **MAD** - Moroccan Dirham
+
+#### Sub-Saharan Africa
+- **ZAR** - South African Rand | **NAD** - Namibian Dollar | **BWP** - Botswanan Pula | **SZL** - Swazi Lilangeni | **LSL** - Lesotho Loti
+- **NGN** - Nigerian Naira | **GHS** - Ghanaian Cedi | **CDF** - Congolese Franc | **AOA** - Angolan Kwanza
+- **KES** - Kenyan Shilling | **UGX** - Ugandan Shilling | **TZS** - Tanzanian Shilling | **ETB** - Ethiopian Birr | **RWF** - Rwandan Franc
+- **ZMW** - Zambian Kwacha | **MWK** - Malawian Kwacha | **MZN** - Mozambican Metical
+
+#### West & Central Africa
+- **XOF** - West African CFA Franc (Benin, Burkina Faso, Côte d'Ivoire, Guinea-Bissau, Mali, Niger, Senegal, Togo)
+- **XAF** - Central African CFA Franc (Cameroon, CAR, Chad, Congo, Equatorial Guinea, Gabon)
+- **GMD** - Gambian Dalasi | **GNF** - Guinean Franc | **SLL** - Sierra Leonean Leone | **LRD** - Liberian Dollar
+
+#### East Africa & Horn
+- **DJF** - Djiboutian Franc | **ERN** - Eritrean Nakfa | **SOS** - Somali Shilling
+- **SDG** - Sudanese Pound | **SSP** - South Sudanese Pound
+
+#### Island Nations
+- **MGA** - Malagasy Ariary | **MUR** - Mauritian Rupee | **SCR** - Seychellois Rupee
+- **CVE** - Cape Verdean Escudo | **STP** - São Tomé and Príncipe Dobra
 
 ### Others
 - **RUB** - Russian Ruble | **NZD** - New Zealand Dollar | **FJD** - Fijian Dollar
