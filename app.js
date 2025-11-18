@@ -20,7 +20,28 @@ const paymentMethods = {
 const currencyData = {
     // Major Currencies
     USD: { rate: 1.0, country: "United States", flag: "🇺🇸", code: "US", tier: 1 },
-    EUR: { rate: 0.85, country: "European Union", flag: "🇪🇺", code: "EU", tier: 1 },
+    
+    // Eurozone Countries (EUR)
+    EUR_DE: { rate: 0.85, country: "Germany", flag: "🇩🇪", code: "DE", tier: 1, currency: "EUR" },
+    EUR_FR: { rate: 0.85, country: "France", flag: "🇫🇷", code: "FR", tier: 1, currency: "EUR" },
+    EUR_IT: { rate: 0.85, country: "Italy", flag: "🇮🇹", code: "IT", tier: 1, currency: "EUR" },
+    EUR_ES: { rate: 0.85, country: "Spain", flag: "🇪🇸", code: "ES", tier: 1, currency: "EUR" },
+    EUR_NL: { rate: 0.85, country: "Netherlands", flag: "🇳🇱", code: "NL", tier: 1, currency: "EUR" },
+    EUR_BE: { rate: 0.85, country: "Belgium", flag: "🇧🇪", code: "BE", tier: 1, currency: "EUR" },
+    EUR_AT: { rate: 0.85, country: "Austria", flag: "🇦🇹", code: "AT", tier: 1, currency: "EUR" },
+    EUR_PT: { rate: 0.85, country: "Portugal", flag: "🇵🇹", code: "PT", tier: 1, currency: "EUR" },
+    EUR_IE: { rate: 0.85, country: "Ireland", flag: "🇮🇪", code: "IE", tier: 1, currency: "EUR" },
+    EUR_FI: { rate: 0.85, country: "Finland", flag: "🇫🇮", code: "FI", tier: 1, currency: "EUR" },
+    EUR_GR: { rate: 0.85, country: "Greece", flag: "🇬🇷", code: "GR", tier: 1, currency: "EUR" },
+    EUR_LU: { rate: 0.85, country: "Luxembourg", flag: "🇱🇺", code: "LU", tier: 1, currency: "EUR" },
+    EUR_SK: { rate: 0.85, country: "Slovakia", flag: "🇸🇰", code: "SK", tier: 1, currency: "EUR" },
+    EUR_SI: { rate: 0.85, country: "Slovenia", flag: "🇸🇮", code: "SI", tier: 1, currency: "EUR" },
+    EUR_EE: { rate: 0.85, country: "Estonia", flag: "🇪🇪", code: "EE", tier: 1, currency: "EUR" },
+    EUR_LV: { rate: 0.85, country: "Latvia", flag: "🇱🇻", code: "LV", tier: 1, currency: "EUR" },
+    EUR_LT: { rate: 0.85, country: "Lithuania", flag: "🇱🇹", code: "LT", tier: 1, currency: "EUR" },
+    EUR_CY: { rate: 0.85, country: "Cyprus", flag: "🇨🇾", code: "CY", tier: 1, currency: "EUR" },
+    EUR_MT: { rate: 0.85, country: "Malta", flag: "🇲🇹", code: "MT", tier: 1, currency: "EUR" },
+    EUR_HR: { rate: 0.85, country: "Croatia", flag: "🇭🇷", code: "HR", tier: 1, currency: "EUR" },
     GBP: { rate: 0.73, country: "United Kingdom", flag: "🇬🇧", code: "GB", tier: 1 },
     JPY: { rate: 110.0, country: "Japan", flag: "🇯🇵", code: "JP", tier: 1 },
     CAD: { rate: 1.25, country: "Canada", flag: "🇨🇦", code: "CA", tier: 1 },
@@ -48,7 +69,6 @@ const currencyData = {
     HUF: { rate: 295.0, country: "Hungary", flag: "🇭🇺", code: "HU", tier: 2 },
     RON: { rate: 4.2, country: "Romania", flag: "🇷🇴", code: "RO", tier: 2 },
     BGN: { rate: 1.66, country: "Bulgaria", flag: "🇧🇬", code: "BG", tier: 2 },
-    HRK: { rate: 6.4, country: "Croatia", flag: "🇭🇷", code: "HR", tier: 2 },
     ISK: { rate: 129.0, country: "Iceland", flag: "🇮🇸", code: "IS", tier: 2 },
     
     // Americas Currencies
@@ -571,8 +591,10 @@ function populateCurrencySelectors() {
     sortedCurrencies.forEach(([code, data]) => {
         let optionText;
         
-        // Special handling for CFA zone countries
-        if (data.currency === 'XOF') {
+        // Special handling for currency unions
+        if (data.currency === 'EUR') {
+            optionText = `${data.flag} EUR - ${data.country} (Eurozone)`;
+        } else if (data.currency === 'XOF') {
             optionText = `${data.flag} XOF - ${data.country} (West African CFA)`;
         } else if (data.currency === 'XAF') {
             optionText = `${data.flag} XAF - ${data.country} (Central African CFA)`;
@@ -591,7 +613,7 @@ function populateCurrencySelectors() {
     
     // Set default values
     senderSelect.value = 'USD';
-    recipientSelect.value = 'EUR';
+    recipientSelect.value = 'EUR_DE'; // Default to Germany
 }
 
 // Modal handling functions
