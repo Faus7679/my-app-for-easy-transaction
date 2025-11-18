@@ -1,191 +1,403 @@
-# 🚀 EasyMove - Smart Money Transfer App
+# 🚀 EasyMove - Complete Money Transfer Platform
 
-EasyMove is an intelligent web application that makes international money transfers simple with automatic currency conversion.
+EasyMove is a production-ready financial platform that makes international money transfers simple, secure, and affordable. Built with modern web technologies and enterprise-grade security, EasyMove provides real payment processing, real-time updates, and comprehensive transaction management.
 
-## ✨ Features
+## 🏗️ **Architecture**
 
-### 🔒 **Security & HTTPS Features**
-- **SSL/TLS Encryption**: End-to-end encryption for all transactions
-- **HTTPS Enforcement**: Automatic redirect from HTTP to HTTPS
-- **Security Headers**: CSP, HSTS, XSS protection, and more
-- **Content Security Policy**: Prevents XSS and injection attacks
-- **Secure Cookie Handling**: HttpOnly and Secure cookie flags
+### **Frontend**
+- **Progressive Web App (PWA)** with offline support
+- **Mobile-first responsive design** for all devices
+- **Real-time WebSocket updates** for live transaction tracking
+- **Modern JavaScript** with ES6+ features and service workers
 
-### 📱 **Mobile & PWA Features**
-- **Progressive Web App**: Installable on mobile devices like a native app
-- **Offline Support**: Works without internet connection with background sync
-- **Touch-Optimized UI**: Mobile-first responsive design for all screen sizes
-- **Service Worker**: Background sync, caching, and push notifications
-- **App-like Experience**: Full-screen mobile app feel with quick actions
-- **Connection Monitoring**: Real-time network status with offline transaction queuing
+### **Backend** *(Production-Ready)*
+- **Node.js + Express.js** server with comprehensive middleware
+- **MongoDB** database with proper indexing and relationships
+- **Redis** for caching and background job processing
+- **JWT Authentication** with refresh tokens and role-based access
+- **Real Payment Processing** with Stripe and PayPal integration
+- **WebSocket Support** for real-time transaction updates
+- **Docker Containerization** for production deployment
 
-### 🌐 **Resilient & Dynamic Features**
-- **Auto-Retry Logic**: Failed transactions automatically retry when connection restored
-- **Smart Caching**: Intelligent caching strategy for optimal performance
-- **Error Recovery**: Graceful error handling with user-friendly messaging
-- **Performance Optimization**: Compressed assets, lazy loading, and CDN support
-- **Cross-Platform**: Works seamlessly on iOS, Android, and desktop browsers
+## ✨ **Core Features**
 
-### 👤 **User Account System**
-- **Account Creation**: Secure account setup with First Name, Last Name, Email, and Phone
-- **User Authentication**: Simple email-based login system
-- **Profile Management**: Personalized experience with user preferences
-- **Session Persistence**: Automatic login on return visits
+### 🔒 **Enterprise Security**
+- **End-to-End Encryption**: All data encrypted in transit and at rest
+- **HTTPS Enforcement**: Automatic redirect with SSL/TLS certificates
+- **Security Headers**: CSP, HSTS, XSS protection, and CSRF prevention
+- **JWT Authentication**: Secure token-based authentication with refresh tokens
+- **Rate Limiting**: DDoS protection and API abuse prevention
+- **Input Validation**: Comprehensive data sanitization and validation
+- **KYC/AML Compliance**: Identity verification and anti-money laundering checks
 
-### 💳 **Multiple Payment Methods**
-- **🏦 Bank Transfer**: No additional fees (0%)
-- **💳 Debit Card**: Low fees (+1.5%)
-- **💳 Credit Card**: Standard fees (+2.5%)
-- **📱 Digital Wallet**: Competitive fees (+1.0%)
-- **₿ Cryptocurrency**: Minimal fees (+0.5%)
+### 💳 **Real Payment Processing**
+- **Stripe Integration**: Credit/debit cards, Apple Pay, Google Pay
+- **PayPal Integration**: Express checkout and PayPal balance
+- **Multiple Currencies**: Support for 100+ global currencies
+- **Real-time Exchange Rates**: Live currency conversion with competitive rates
+- **Webhook Processing**: Instant payment confirmations and updates
+- **Refund Support**: Automated refund processing and tracking
 
-### 🔒 **Security & Compliance**
-- **ID Verification**: Required for transactions above $2,000 USD
-- **Document Upload**: Secure ID document verification system
-- **Compliance Checks**: Automatic regulatory compliance screening
-- **Fraud Protection**: Multi-tier security based on transaction amount
+### 📱 **Modern User Experience**
+- **Progressive Web App**: Installable on any device with app-like experience
+- **Offline Support**: Queue transactions when offline, sync when connected
+- **Real-time Updates**: Live transaction status via WebSocket connections
+- **Mobile Optimized**: Touch-friendly interface with responsive design
+- **Push Notifications**: Transaction alerts and status updates
+- **Multi-language Support**: Internationalization ready
+
+### 👤 **User Management**
+- **Secure Registration**: Email verification and password requirements
+- **User Profiles**: Complete profile management with KYC verification
+- **Document Upload**: Secure ID verification with AWS S3 storage
+- **Transaction History**: Detailed transaction records with search and filters
+- **Multi-factor Authentication**: Optional 2FA for enhanced security
+- **Role-based Access**: User, admin, and operator role management
 
 ### 💰 **Advanced Financial Features**
-- **Multi-Currency Balance**: View balance in 80+ global currencies with flags and country names
-- **Smart Fee Structure**: 3-tier pricing based on currency stability and risk
-- **Real-Time Calculations**: Live fee and conversion updates as you type
-- **Transparent Pricing**: Clear breakdown of all fees and charges
+- **Smart Fee Structure**: Transparent pricing based on payment method and amount
+- **Multi-Currency Wallets**: Hold balances in multiple currencies
+- **Exchange Rate Alerts**: Notifications for favorable exchange rates
+- **Transaction Limits**: Configurable daily, monthly, and per-transaction limits
+- **Compliance Monitoring**: Automated sanctions and AML screening
+- **Detailed Reporting**: Comprehensive transaction and financial reports
+### 💸 **Payment Methods & Fees**
+| Payment Method | Processing Fee | Processing Time | Limits |
+|---|---|---|---|
+| 🏦 Bank Transfer | 0% | 1-3 business days | $10 - $50,000 |
+| 💳 Debit Card | +1.5% | Instant | $10 - $10,000 |
+| 💳 Credit Card | +2.5% | Instant | $10 - $5,000 |
+| 📱 Digital Wallet | +1.0% | Instant | $10 - $25,000 |
+| ₿ Cryptocurrency | +0.5% | 10-30 minutes | $10 - $100,000 |
 
-### 📊 **Enhanced Transaction History**
-- **Comprehensive Tracking**: Complete transaction records with all details
-- **Advanced Filtering**: Filter by currency, date range, transaction type
-- **Detailed Records**: Payment method, fees, exchange rates, and more
-- **Export Ready**: Transaction IDs and timestamps for record keeping
+## 🚀 **Quick Start**
 
-### 🌍 **Global Currency Support**
-- **80+ Currencies**: Complete coverage including all African nations
-- **Visual Identification**: Country flags and names for easy recognition
-- **Live Conversion**: Real-time exchange rates and conversion preview
-- **Regional Grouping**: Organized by continents and currency unions
-
-### 🎯 **User Experience**
-- **Smart Notifications**: Context-aware messages with transaction details
-- **Responsive Design**: Optimized for desktop, tablet, and mobile
-- **Persistent Preferences**: Remembers your settings and preferences
-- **Intuitive Interface**: Clean, modern design with clear navigation
-
-## 📖 How to Use
-
-### 🚀 **Getting Started**
-1. **Open the App**: Simply open `index.html` in your web browser
-2. **Create Account**: Enter your First Name, Last Name, Email, and Phone number
-3. **Set Preferences**: Choose your preferred currency for balance display
-
-### 💸 **Making a Transfer**
-1. **Login**: Access your account (automatic if recently used)
-2. **Fill Transfer Details**:
-   - Enter recipient's name and account/email
-   - Select your sending currency from 80+ options
-   - Enter the transfer amount
-   - Choose recipient's preferred currency
-   - Select your payment method
-   - Add optional description
-3. **Review Details**: See live conversion rates, fees, and total cost
-4. **ID Verification**: Upload ID if transferring $2,000+ USD
-5. **Confirm Transfer**: Complete your secure money transfer
-6. **Receive Confirmation**: Get detailed transaction confirmation
-
-### 📊 **Managing Your Account**
-- **View Balance**: Monitor funds in any supported currency
-- **Transaction History**: Access detailed transfer records with advanced filtering
-- **Payment Methods**: Manage multiple payment options
-- **Currency Preferences**: Set and update preferred currencies
-- **Profile Settings**: Update personal information and preferences
-
-### 🔐 **Security Features**
-- **Large Transaction Verification**: Automatic ID verification for high-value transfers
-- **Secure Document Upload**: Safe handling of identification documents
-- **Fraud Protection**: Multi-layer security based on transaction patterns
-- **Compliance Monitoring**: Automatic regulatory compliance checks
-
-## 🌍 Supported Currencies (50+ Global Currencies)
-
-### Major Currencies
-- **USD** - US Dollar | **GBP** - British Pound | **JPY** - Japanese Yen | **CHF** - Swiss Franc
-- **CAD** - Canadian Dollar | **AUD** - Australian Dollar | **CNY** - Chinese Yuan
-
-### Eurozone Countries (EUR) - Individual Country Selection
-- **🇩🇪 Germany** | **🇫🇷 France** | **🇮🇹 Italy** | **🇪🇸 Spain** | **🇳🇱 Netherlands** | **🇧🇪 Belgium**
-- **🇦🇹 Austria** | **🇵🇹 Portugal** | **🇮🇪 Ireland** | **🇫🇮 Finland** | **🇬🇷 Greece** | **🇱🇺 Luxembourg**
-- **🇸🇰 Slovakia** | **🇸🇮 Slovenia** | **🇪🇪 Estonia** | **🇱🇻 Latvia** | **🇱🇹 Lithuania**
-- **🇨🇾 Cyprus** | **🇲🇹 Malta** | **🇭🇷 Croatia**
-
-### Asian Currencies
-- **INR** - Indian Rupee | **KRW** - South Korean Won | **SGD** - Singapore Dollar | **HKD** - Hong Kong Dollar
-- **THB** - Thai Baht | **MYR** - Malaysian Ringgit | **PHP** - Philippine Peso | **IDR** - Indonesian Rupiah
-- **VND** - Vietnamese Dong
-
-### Other European Currencies
-- **NOK** - Norwegian Krone | **SEK** - Swedish Krona | **DKK** - Danish Krone | **PLN** - Polish Zloty
-- **CZK** - Czech Koruna | **HUF** - Hungarian Forint | **RON** - Romanian Leu | **BGN** - Bulgarian Lev
-- **ISK** - Icelandic Krona
-
-### Americas Currencies
-- **BRL** - Brazilian Real | **MXN** - Mexican Peso | **ARS** - Argentine Peso | **CLP** - Chilean Peso
-- **COP** - Colombian Peso | **PEN** - Peruvian Sol | **UYU** - Uruguayan Peso | **BOB** - Bolivian Boliviano
-- **PYG** - Paraguayan Guarani
-
-### Middle East & Africa (Complete Coverage)
-- **AED** - UAE Dirham | **SAR** - Saudi Riyal | **ILS** - Israeli Shekel | **TRY** - Turkish Lira
-- **EGP** - Egyptian Pound | **LYD** - Libyan Dinar | **TND** - Tunisian Dinar | **DZD** - Algerian Dinar | **MAD** - Moroccan Dirham
-
-#### Sub-Saharan Africa
-- **ZAR** - South African Rand | **NAD** - Namibian Dollar | **BWP** - Botswanan Pula | **SZL** - Swazi Lilangeni | **LSL** - Lesotho Loti
-- **NGN** - Nigerian Naira | **GHS** - Ghanaian Cedi | **CDF** - Congolese Franc | **AOA** - Angolan Kwanza
-- **KES** - Kenyan Shilling | **UGX** - Ugandan Shilling | **TZS** - Tanzanian Shilling | **ETB** - Ethiopian Birr | **RWF** - Rwandan Franc
-- **ZMW** - Zambian Kwacha | **MWK** - Malawian Kwacha | **MZN** - Mozambican Metical
-
-#### West African CFA Franc Zone (XOF) - Individual Country Selection
-- **🇧🇯 Benin** | **🇧🇫 Burkina Faso** | **🇨🇮 Côte d'Ivoire** | **🇬🇼 Guinea-Bissau**
-- **🇲🇱 Mali** | **🇳🇪 Niger** | **🇸🇳 Senegal** | **🇹🇬 Togo**
-
-#### Central African CFA Franc Zone (XAF) - Individual Country Selection
-- **🇨🇲 Cameroon** | **🇨🇫 Central African Republic** | **🇹🇩 Chad**
-- **🇨🇬 Republic of the Congo** | **🇬🇶 Equatorial Guinea** | **🇬🇦 Gabon**
-
-#### Other West & Central African Countries
-- **GMD** - Gambian Dalasi | **GNF** - Guinean Franc | **SLL** - Sierra Leonean Leone | **LRD** - Liberian Dollar
-
-#### East Africa & Horn
-- **DJF** - Djiboutian Franc | **ERN** - Eritrean Nakfa | **SOS** - Somali Shilling
-- **SDG** - Sudanese Pound | **SSP** - South Sudanese Pound
-
-#### Island Nations
-- **MGA** - Malagasy Ariary | **MUR** - Mauritian Rupee | **SCR** - Seychellois Rupee
-- **CVE** - Cape Verdean Escudo | **STP** - São Tomé and Príncipe Dobra
-
-### Others
-- **RUB** - Russian Ruble | **NZD** - New Zealand Dollar | **FJD** - Fijian Dollar
-
-## Quick Start
-
-### Option 1: Direct File Access
+### **Frontend Only (Demo Mode)**
 ```bash
-# Navigate to the directory
-cd my-app-for-easy-transaction
+# Clone the repository
+git clone https://github.com/yourusername/easymove.git
+cd easymove
 
-# Open in browser (on macOS)
+# Open in browser
 open index.html
-
-# Or on Linux
-xdg-open index.html
-
-# Or on Windows
-start index.html
+# Or use a local server
+python -m http.server 8000
 ```
 
-### Option 2: Using a Local Server
+### **Full Stack (Production Ready)**
 ```bash
-# Using Python 3
+# Navigate to backend
+cd backend
+
+# Configure environment
+cp .env.example .env
+# Edit .env with your API keys and database credentials
+
+# Deploy with Docker (Recommended)
+chmod +x deploy.sh
+./deploy.sh
+
+# Or start manually
+docker-compose up -d
+```
+
+## 🛠️ **Technology Stack**
+
+### **Frontend**
+- **HTML5** with semantic markup and accessibility features
+- **CSS3** with Flexbox, Grid, and custom properties
+- **Vanilla JavaScript** with ES6+ features and modules
+- **Service Worker** for PWA functionality and offline support
+- **Web APIs**: Fetch, Local Storage, Push Notifications, etc.
+
+### **Backend**
+- **Node.js 18+** with Express.js framework
+- **MongoDB 7.0** with Mongoose ODM
+- **Redis 7.0** for caching and job queues
+- **Socket.io** for real-time WebSocket connections
+- **JWT** for authentication and authorization
+- **Bull** for background job processing
+- **Winston** for comprehensive logging
+- **Joi** for input validation and sanitization
+
+### **Payment Integration**
+- **Stripe API** for card payments and digital wallets
+- **PayPal SDK** for PayPal payments and express checkout
+- **Webhook Handling** for real-time payment confirmations
+- **PCI Compliance** with secure tokenization
+
+### **Infrastructure**
+- **Docker** containerization with multi-service architecture
+- **Nginx** reverse proxy with SSL termination
+- **MongoDB** with replica sets and authentication
+- **Redis** with password protection and persistence
+- **Let's Encrypt** for SSL certificates
+- **AWS S3** for secure document storage
+
+## 📁 **Project Structure**
+
+```
+easymove/
+├── 📁 frontend/
+│   ├── index.html              # Main application entry point
+│   ├── styles.css              # Complete styling and responsive design
+│   ├── app.js                  # Core application logic
+│   ├── sw.js                   # Service worker for PWA features
+│   └── manifest.json           # PWA manifest configuration
+├── 📁 backend/
+│   ├── 📁 src/
+│   │   ├── 📁 controllers/     # Request handlers and business logic
+│   │   ├── 📁 models/          # MongoDB schemas and data models
+│   │   ├── 📁 routes/          # API endpoints and route definitions
+│   │   ├── 📁 middleware/      # Authentication and validation middleware
+│   │   ├── 📁 services/        # Payment, email, and external services
+│   │   └── 📁 utils/           # Utility functions and helpers
+│   ├── server.js               # Main server entry point
+│   ├── package.json            # Dependencies and scripts
+│   ├── Dockerfile              # Container configuration
+│   ├── docker-compose.yml      # Multi-service deployment
+│   └── .env.example            # Environment configuration template
+└── 📁 docs/
+    ├── DEPLOYMENT.md           # Production deployment guide
+    ├── API.md                  # API documentation
+    └── SECURITY.md             # Security best practices
+```
+
+## 🔧 **Development & Deployment**
+
+### **Development Setup**
+```bash
+# Frontend Development
+git clone https://github.com/yourusername/easymove.git
+cd easymove
+python -m http.server 8000  # or use Live Server in VS Code
+
+# Backend Development
+cd backend
+npm install
+cp .env.example .env
+# Configure your environment variables
+npm run dev
+```
+
+### **Production Deployment**
+
+#### **Docker Deployment (Recommended)**
+```bash
+cd backend
+cp .env.example .env
+# Update .env with production values
+chmod +x deploy.sh
+./deploy.sh
+```
+
+#### **Manual Deployment**
+```bash
+# Install dependencies
+npm install --production
+
+# Start with PM2
+npm install -g pm2
+pm2 start ecosystem.config.js
+pm2 save
+pm2 startup
+```
+
+#### **Environment Variables**
+Key variables to configure in `.env`:
+```env
+NODE_ENV=production
+MONGODB_URI=mongodb://username:password@localhost:27017/easymove
+STRIPE_SECRET_KEY=sk_live_your_stripe_key
+PAYPAL_CLIENT_ID=your_paypal_client_id
+JWT_SECRET=your_super_secure_secret
+FRONTEND_URL=https://easymove.app
+```
+
+### **API Endpoints**
+
+#### **Authentication**
+- `POST /api/auth/register` - User registration
+- `POST /api/auth/login` - User login
+- `POST /api/auth/refresh` - Refresh JWT token
+- `POST /api/auth/forgot-password` - Password reset
+- `GET /api/auth/verify-email/:token` - Email verification
+
+#### **Transactions**
+- `POST /api/transactions` - Create new transaction
+- `GET /api/transactions` - Get user transactions
+- `GET /api/transactions/:id` - Get transaction details
+- `PUT /api/transactions/:id/cancel` - Cancel transaction
+- `GET /api/transactions/:id/receipt` - Download receipt
+
+#### **Payments**
+- `POST /api/payments/stripe/intent` - Create Stripe payment intent
+- `POST /api/payments/paypal/create` - Create PayPal payment
+- `POST /api/payments/stripe/webhook` - Stripe webhook handler
+- `POST /api/payments/paypal/webhook` - PayPal webhook handler
+
+#### **Users**
+- `GET /api/users/profile` - Get user profile
+- `PUT /api/users/profile` - Update user profile
+- `POST /api/users/upload-document` - Upload KYC document
+- `GET /api/users/balance` - Get account balance
+
+#### **Currencies**
+- `GET /api/currencies` - Get supported currencies
+- `GET /api/currencies/rates` - Get current exchange rates
+- `GET /api/currencies/:from/:to` - Get specific rate
+
+## 🌍 **Global Currency Support (100+ Currencies)**
+
+### **Major Currencies**
+- **USD** 🇺🇸 US Dollar | **EUR** 🇪🇺 Euro | **GBP** 🇬🇧 British Pound | **JPY** 🇯🇵 Japanese Yen
+- **CAD** 🇨🇦 Canadian Dollar | **AUD** 🇦🇺 Australian Dollar | **CHF** 🇨🇭 Swiss Franc
+
+### **African Currencies** *(Complete Coverage)*
+- **NGN** 🇳🇬 Nigerian Naira | **ZAR** 🇿🇦 South African Rand | **KES** 🇰🇪 Kenyan Shilling
+- **GHS** 🇬🇭 Ghanaian Cedi | **EGP** 🇪🇬 Egyptian Pound | **MAD** 🇲🇦 Moroccan Dirham
+- **TND** 🇹🇳 Tunisian Dinar | **XOF** 🌍 West African CFA Franc | **XAF** 🌍 Central African CFA Franc
+
+### **Asian Currencies**
+- **INR** 🇮🇳 Indian Rupee | **CNY** 🇨🇳 Chinese Yuan | **KRW** 🇰🇷 South Korean Won
+- **SGD** 🇸🇬 Singapore Dollar | **HKD** 🇭🇰 Hong Kong Dollar | **THB** 🇹🇭 Thai Baht
+
+### **Latin American Currencies**
+- **BRL** 🇧🇷 Brazilian Real | **MXN** 🇲🇽 Mexican Peso | **ARS** 🇦🇷 Argentine Peso
+- **CLP** 🇨🇱 Chilean Peso | **COP** 🇨🇴 Colombian Peso | **PEN** 🇵🇪 Peruvian Sol
+
+## 📊 **Performance & Security**
+
+### **Performance Features**
+- **PWA Optimization**: Lighthouse score 95+ across all categories
+- **Lazy Loading**: Images and components loaded on demand
+- **Caching Strategy**: Intelligent caching with service worker
+- **CDN Support**: Static assets served from CDN
+- **Database Optimization**: Indexed queries and connection pooling
+- **Real-time Updates**: WebSocket connections for instant notifications
+
+### **Security Measures**
+- **HTTPS Enforcement**: All traffic encrypted with TLS 1.3
+- **CSP Headers**: Content Security Policy prevents XSS attacks
+- **Rate Limiting**: API endpoints protected against abuse
+- **Input Validation**: All user input sanitized and validated
+- **JWT Security**: Short-lived tokens with secure refresh mechanism
+- **PCI Compliance**: Secure payment processing with tokenization
+- **KYC/AML**: Identity verification and compliance monitoring
+
+## 🔧 **Configuration & Customization**
+
+### **Frontend Customization**
+```css
+/* Update brand colors in styles.css */
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #dc2626;
+    --success-color: #16a34a;
+    --warning-color: #ca8a04;
+}
+```
+
+### **Backend Configuration**
+```env
+# Transaction limits
+MIN_TRANSACTION_AMOUNT=1
+MAX_TRANSACTION_AMOUNT=50000
+DAILY_TRANSACTION_LIMIT=100000
+
+# KYC requirements
+KYC_REQUIRED_AMOUNT=1000
+AML_CHECK_ENABLED=true
+
+# Payment gateway settings
+STRIPE_WEBHOOK_TOLERANCE=300
+PAYPAL_SANDBOX_MODE=false
+```
+
+## 🚀 **Getting Started**
+
+### **Demo Mode (Frontend Only)**
+```bash
+# Clone and run locally
+git clone https://github.com/yourusername/easymove.git
+cd easymove
+python -m http.server 8000
+# Visit http://localhost:8000
+```
+
+### **Production Setup (Full Stack)**
+```bash
+# Backend setup
+cd backend
+cp .env.example .env
+# Configure environment variables
+./deploy.sh
+```
+
+## 🔗 **Useful Links**
+
+- **📖 [Deployment Guide](backend/DEPLOYMENT.md)** - Complete production deployment instructions
+- **🔒 [Security Configuration](server-config.md)** - HTTPS and security setup
+- **🌐 [Live Demo](https://easymove.app)** - Try the application online
+- **📚 [API Documentation](backend/docs/API.md)** - Complete API reference
+- **🔧 [Development Guide](backend/docs/DEVELOPMENT.md)** - Contributing guidelines
+
+## 🤝 **Contributing**
+
+We welcome contributions! Please read our contributing guidelines and submit pull requests for any improvements.
+
+### **Development Workflow**
+```bash
+# Fork the repository and clone
+git clone https://github.com/yourusername/easymove.git
+cd easymove
+
+# Create feature branch
+git checkout -b feature/your-feature-name
+
+# Make changes and test
+# Backend changes
+cd backend && npm test
+
+# Frontend changes - test in browser
 python -m http.server 8000
 
-# Then visit http://localhost:8000 in your browser
+# Commit and push
+git add .
+git commit -m "Add your feature description"
+git push origin feature/your-feature-name
+
+# Create pull request
 ```
+
+## 📄 **License**
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 **Author**
+
+**Yawo Faustin AZIAKPO**
+- GitHub: [@Faus7679](https://github.com/Faus7679)
+- Email: contact@easymove.app
+
+## 🙏 **Acknowledgments**
+
+- **Exchange Rate API** for real-time currency conversion
+- **Stripe & PayPal** for secure payment processing
+- **MongoDB & Redis** for robust data management
+- **The open-source community** for amazing tools and libraries
+
+---
+
+<div align="center">
+
+**⭐ Star this repo if you find it helpful!**
+
+**🚀 Ready to revolutionize money transfers? Deploy EasyMove today!**
+
+Made with ❤️ by [Yawo Faustin AZIAKPO](https://github.com/Faus7679)
+
+</div>
 
 ### Option 3: Using Node.js
 ```bash
