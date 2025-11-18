@@ -50,8 +50,30 @@
             </div>
         </header>
 
+        <!-- Navigation Tabs -->
+        <nav class="tab-navigation">
+            <button class="tab-btn active" data-tab="send-money">
+                <span class="tab-icon">💸</span>
+                <span class="tab-text">Send Money</span>
+            </button>
+            <button class="tab-btn" data-tab="find-locations">
+                <span class="tab-icon">📍</span>
+                <span class="tab-text">Locations</span>
+            </button>
+            <button class="tab-btn" data-tab="track-transfer">
+                <span class="tab-icon">🔍</span>
+                <span class="tab-text">Track</span>
+            </button>
+            <button class="tab-btn" data-tab="language">
+                <span class="tab-icon">🌐</span>
+                <span class="tab-text">Language</span>
+            </button>
+        </nav>
+
         <main>
-            <div class="balance-card">
+            <!-- Send Money Tab Content -->
+            <div id="send-money" class="tab-content active">
+                <div class="balance-card">
                 <div class="balance-header">
                     <p class="balance-label">Available Balance</p>
                     <select id="balanceCurrency" class="currency-selector">
@@ -437,6 +459,144 @@
                     <!-- Transactions will be added here dynamically -->
                 </div>
             </div>
+            </div>
+            <!-- End Send Money Tab -->
+
+            <!-- Find Locations Tab Content -->
+            <div id="find-locations" class="tab-content">
+                <div class="locations-container">
+                    <div class="search-section">
+                        <h2>🏪 Find EasyMove Locations</h2>
+                        <div class="search-box">
+                            <input type="text" id="locationSearch" placeholder="Enter city, country, or postal code..." class="location-input">
+                            <button id="searchLocations" class="search-btn">Search</button>
+                        </div>
+                        <div class="filter-options">
+                            <select id="serviceFilter" class="filter-select">
+                                <option value="all">All Services</option>
+                                <option value="cash-pickup">Cash pickup</option>
+                                <option value="bank-deposit">Bank deposit</option>
+                                <option value="mobile-wallet">Mobile wallet</option>
+                            </select>
+                            <select id="countryFilter" class="filter-select">
+                                <option value="all">All Countries</option>
+                                <option value="US">United States</option>
+                                <option value="GB">United Kingdom</option>
+                                <option value="DE">Germany</option>
+                                <option value="FR">France</option>
+                                <option value="NG">Nigeria</option>
+                                <option value="KE">Kenya</option>
+                                <option value="GH">Ghana</option>
+                                <option value="IN">India</option>
+                                <option value="PH">Philippines</option>
+                                <option value="MX">Mexico</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="locationsResults" class="locations-results">
+                        <!-- Location results will be populated here -->
+                    </div>
+                </div>
+            </div>
+            <!-- End Find Locations Tab -->
+
+            <!-- Track Transfer Tab Content -->
+            <div id="track-transfer" class="tab-content">
+                <div class="track-container">
+                    <div class="track-header">
+                        <h2>🔍 Track Your Transfer</h2>
+                        <p>Enter your transaction ID or reference number to check the status</p>
+                    </div>
+                    <div class="track-form">
+                        <div class="form-group">
+                            <label for="trackingId">Transaction ID or Reference Number</label>
+                            <input type="text" id="trackingId" placeholder="Enter TXN123456789 or REF000000" class="track-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="trackingPhone">Phone Number (Optional)</label>
+                            <input type="tel" id="trackingPhone" placeholder="+1234567890" class="track-input">
+                        </div>
+                        <button id="trackTransfer" class="btn-primary">Track Transfer</button>
+                    </div>
+                    <div id="trackingResults" class="tracking-results" style="display: none;">
+                        <!-- Tracking results will be shown here -->
+                    </div>
+                </div>
+            </div>
+            <!-- End Track Transfer Tab -->
+
+            <!-- Language Tab Content -->
+            <div id="language" class="tab-content">
+                <div class="language-container">
+                    <div class="language-header">
+                        <h2>🌐 Language & Region Settings</h2>
+                        <p>Customize your language and regional preferences</p>
+                    </div>
+                    <div class="language-settings">
+                        <div class="setting-group">
+                            <label for="appLanguage">App Language</label>
+                            <select id="appLanguage" class="language-select">
+                                <option value="en">🇺🇸 English</option>
+                                <option value="es">🇪🇸 Español</option>
+                                <option value="fr">🇫🇷 Français</option>
+                                <option value="de">🇩🇪 Deutsch</option>
+                                <option value="it">🇮🇹 Italiano</option>
+                                <option value="pt">🇵🇹 Português</option>
+                                <option value="ar">🇸🇦 العربية</option>
+                                <option value="zh">🇨🇳 中文</option>
+                                <option value="ja">🇯🇵 日本語</option>
+                                <option value="ko">🇰🇷 한국어</option>
+                                <option value="hi">🇮🇳 हिन्दी</option>
+                                <option value="sw">🇰🇪 Kiswahili</option>
+                                <option value="yo">🇳🇬 Yorùbá</option>
+                                <option value="ha">🇳🇬 Hausa</option>
+                                <option value="ig">🇳🇬 Igbo</option>
+                            </select>
+                        </div>
+                        <div class="setting-group">
+                            <label for="dateFormat">Date Format</label>
+                            <select id="dateFormat" class="language-select">
+                                <option value="MM/DD/YYYY">MM/DD/YYYY (US)</option>
+                                <option value="DD/MM/YYYY">DD/MM/YYYY (UK/EU)</option>
+                                <option value="YYYY-MM-DD">YYYY-MM-DD (ISO)</option>
+                                <option value="DD.MM.YYYY">DD.MM.YYYY (German)</option>
+                            </select>
+                        </div>
+                        <div class="setting-group">
+                            <label for="numberFormat">Number Format</label>
+                            <select id="numberFormat" class="language-select">
+                                <option value="1,234.56">1,234.56 (US/UK)</option>
+                                <option value="1.234,56">1.234,56 (EU)</option>
+                                <option value="1 234,56">1 234,56 (French)</option>
+                                <option value="1'234.56">1'234.56 (Swiss)</option>
+                            </select>
+                        </div>
+                        <div class="setting-group">
+                            <label for="timeZone">Time Zone</label>
+                            <select id="timeZone" class="language-select">
+                                <option value="UTC">UTC (Coordinated Universal Time)</option>
+                                <option value="America/New_York">Eastern Time (US & Canada)</option>
+                                <option value="America/Chicago">Central Time (US & Canada)</option>
+                                <option value="America/Denver">Mountain Time (US & Canada)</option>
+                                <option value="America/Los_Angeles">Pacific Time (US & Canada)</option>
+                                <option value="Europe/London">London (GMT/BST)</option>
+                                <option value="Europe/Paris">Paris (CET/CEST)</option>
+                                <option value="Europe/Berlin">Berlin (CET/CEST)</option>
+                                <option value="Asia/Tokyo">Tokyo (JST)</option>
+                                <option value="Asia/Shanghai">Shanghai (CST)</option>
+                                <option value="Asia/Mumbai">Mumbai (IST)</option>
+                                <option value="Africa/Lagos">Lagos (WAT)</option>
+                                <option value="Africa/Nairobi">Nairobi (EAT)</option>
+                            </select>
+                        </div>
+                        <div class="setting-actions">
+                            <button id="saveLanguageSettings" class="btn-primary">Save Settings</button>
+                            <button id="resetLanguageSettings" class="btn-secondary">Reset to Default</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Language Tab -->
         </main>
 
         <div id="notification" class="notification hidden"></div>
