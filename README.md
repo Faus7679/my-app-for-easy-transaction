@@ -84,18 +84,24 @@ EasyMove is an intelligent web application that makes international money transf
 ## 🌍 Supported Currencies (50+ Global Currencies)
 
 ### Major Currencies
-- **USD** - US Dollar | **EUR** - Euro | **GBP** - British Pound | **JPY** - Japanese Yen
-- **CAD** - Canadian Dollar | **AUD** - Australian Dollar | **CHF** - Swiss Franc | **CNY** - Chinese Yuan
+- **USD** - US Dollar | **GBP** - British Pound | **JPY** - Japanese Yen | **CHF** - Swiss Franc
+- **CAD** - Canadian Dollar | **AUD** - Australian Dollar | **CNY** - Chinese Yuan
+
+### Eurozone Countries (EUR) - Individual Country Selection
+- **🇩🇪 Germany** | **🇫🇷 France** | **🇮🇹 Italy** | **🇪🇸 Spain** | **🇳🇱 Netherlands** | **🇧🇪 Belgium**
+- **🇦🇹 Austria** | **🇵🇹 Portugal** | **🇮🇪 Ireland** | **🇫🇮 Finland** | **🇬🇷 Greece** | **🇱🇺 Luxembourg**
+- **🇸🇰 Slovakia** | **🇸🇮 Slovenia** | **🇪🇪 Estonia** | **🇱🇻 Latvia** | **🇱🇹 Lithuania**
+- **🇨🇾 Cyprus** | **🇲🇹 Malta** | **🇭🇷 Croatia**
 
 ### Asian Currencies
 - **INR** - Indian Rupee | **KRW** - South Korean Won | **SGD** - Singapore Dollar | **HKD** - Hong Kong Dollar
 - **THB** - Thai Baht | **MYR** - Malaysian Ringgit | **PHP** - Philippine Peso | **IDR** - Indonesian Rupiah
 - **VND** - Vietnamese Dong
 
-### European Currencies
+### Other European Currencies
 - **NOK** - Norwegian Krone | **SEK** - Swedish Krona | **DKK** - Danish Krone | **PLN** - Polish Zloty
 - **CZK** - Czech Koruna | **HUF** - Hungarian Forint | **RON** - Romanian Leu | **BGN** - Bulgarian Lev
-- **HRK** - Croatian Kuna | **ISK** - Icelandic Krona
+- **ISK** - Icelandic Krona
 
 ### Americas Currencies
 - **BRL** - Brazilian Real | **MXN** - Mexican Peso | **ARS** - Argentine Peso | **CLP** - Chilean Peso
