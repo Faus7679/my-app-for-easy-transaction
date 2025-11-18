@@ -319,6 +319,21 @@ header h1 {
     font-style: italic;
 }
 
+.transaction-fee {
+    font-size: 0.75rem;
+    color: var(--danger-color);
+    margin-top: 2px;
+    font-weight: 500;
+}
+
+.transaction-breakdown {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-align: right;
+    margin-top: 5px;
+    line-height: 1.2;
+}
+
 /* Select styling */
 select {
     width: 100%;
