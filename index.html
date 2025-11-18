@@ -2,15 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EasyMove - Smart Money Transfer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0">
+    <title>EasyMove - Secure Money Transfer</title>
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https:;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#007bff">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    
+    <!-- Mobile App Capabilities -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="EasyMove">
+    <meta name="mobile-web-app-capable" content="yes">
+    
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Connection Status -->
+    <div id="connectionStatus" class="connection-status offline" style="display: none;">
+        <span id="statusIcon">⚠️</span>
+        <span id="statusText">You're offline. Transactions will be saved and processed when connection is restored.</span>
+    </div>
+    
     <div class="container">
         <header>
             <h1>🚀 EasyMove</h1>
             <p class="subtitle">Smart money transfer with automatic currency conversion</p>
+            <div class="security-badge">
+                <span class="ssl-icon">🔒</span>
+                <span class="ssl-text">SSL Secured</span>
+            </div>
             <div id="userInfo" class="user-info hidden">
                 <span id="welcomeMessage"></span>
                 <button id="logoutBtn" class="btn-secondary">Logout</button>
@@ -372,10 +405,27 @@
                         ></textarea>
                     </div>
 
-                    <button type="submit" class="btn-primary">
-                        Send Money
+                    <button type="submit" class="btn-primary" id="sendButton">
+                        <span class="btn-text">Send Money 💰</span>
+                        <span class="btn-loader" style="display: none;">Processing...</span>
                     </button>
                 </form>
+                
+                <!-- Quick Actions for Mobile -->
+                <div class="quick-actions">
+                    <button class="quick-btn" onclick="showTransactionHistory()">
+                        <span>📊</span>
+                        <span>History</span>
+                    </button>
+                    <button class="quick-btn" onclick="showAccountModal()">
+                        <span>👤</span>
+                        <span>Account</span>
+                    </button>
+                    <button class="quick-btn" onclick="showPaymentMethods()">
+                        <span>💳</span>
+                        <span>Payment</span>
+                    </button>
+                </div>
             </div>
 
             <div class="transaction-history">

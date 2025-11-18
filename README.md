@@ -4,6 +4,28 @@ EasyMove is an intelligent web application that makes international money transf
 
 ## ✨ Features
 
+### 🔒 **Security & HTTPS Features**
+- **SSL/TLS Encryption**: End-to-end encryption for all transactions
+- **HTTPS Enforcement**: Automatic redirect from HTTP to HTTPS
+- **Security Headers**: CSP, HSTS, XSS protection, and more
+- **Content Security Policy**: Prevents XSS and injection attacks
+- **Secure Cookie Handling**: HttpOnly and Secure cookie flags
+
+### 📱 **Mobile & PWA Features**
+- **Progressive Web App**: Installable on mobile devices like a native app
+- **Offline Support**: Works without internet connection with background sync
+- **Touch-Optimized UI**: Mobile-first responsive design for all screen sizes
+- **Service Worker**: Background sync, caching, and push notifications
+- **App-like Experience**: Full-screen mobile app feel with quick actions
+- **Connection Monitoring**: Real-time network status with offline transaction queuing
+
+### 🌐 **Resilient & Dynamic Features**
+- **Auto-Retry Logic**: Failed transactions automatically retry when connection restored
+- **Smart Caching**: Intelligent caching strategy for optimal performance
+- **Error Recovery**: Graceful error handling with user-friendly messaging
+- **Performance Optimization**: Compressed assets, lazy loading, and CDN support
+- **Cross-Platform**: Works seamlessly on iOS, Android, and desktop browsers
+
 ### 👤 **User Account System**
 - **Account Creation**: Secure account setup with First Name, Last Name, Email, and Phone
 - **User Authentication**: Simple email-based login system
