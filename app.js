@@ -4,7 +4,7 @@
 
 // App Configuration
 const APP_CONFIG = {
-    domain: 'easymove.app', // Your domain here
+    domain: 'https://dcc.godaddy.com/control/portfolio/easymoves.app/settings', // Your domain here
     apiEndpoint: 'https://api.easymove.app',
     version: '2.0.0',
     offlineSupport: true,
