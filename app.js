@@ -1,3 +1,24 @@
+// =============================================================================
+// APP CONFIGURATION & SECURITY
+// =============================================================================
+
+// App Configuration
+const APP_CONFIG = {
+    domain: 'easymove.app', // Your domain here
+    apiEndpoint: 'https://api.easymove.app',
+    version: '2.0.0',
+    offlineSupport: true,
+    maxRetries: 3,
+    retryDelay: 1000
+};
+
+// Connection Status
+let isOnline = navigator.onLine;
+let pendingTransactions = JSON.parse(localStorage.getItem('pendingTransactions') || '[]');
+
+// DOM Elements for mobile features
+let connectionStatus, statusIcon, statusText, sendButton, btnText, btnLoader;
+
 // User account and app state
 let currentUser = null;
 let balance = 5000.00;
@@ -948,8 +969,211 @@ updateBalance = function() {
 // Load saved data on page load
 loadSavedData();
 
-// Initialize app
-init();
+// =============================================================================
+// MOBILE & SECURITY ENHANCEMENTS
+// =============================================================================
+
+// Network Status Management
+function updateConnectionStatus() {
+    const wasOnline = isOnline;
+    isOnline = navigator.onLine;
+    
+    if (connectionStatus) {
+        if (isOnline) {
+            connectionStatus.className = 'connection-status online';
+            connectionStatus.style.display = 'none';
+            statusIcon.textContent = '✅';
+            statusText.textContent = 'Connected - Secure connection established';
+            
+            // Process pending transactions when back online
+            if (!wasOnline && pendingTransactions.length > 0) {
+                processPendingTransactions();
+            }
+        } else {
+            connectionStatus.className = 'connection-status offline';
+            connectionStatus.style.display = 'block';
+            statusIcon.textContent = '⚠️';
+            statusText.textContent = 'You\'re offline. Transactions will be saved and processed when connection is restored.';
+        }
+    }
+}
+
+// Process pending transactions when back online
+async function processPendingTransactions() {
+    if (pendingTransactions.length === 0) return;
+    
+    console.log(`Processing ${pendingTransactions.length} pending transactions...`);
+    
+    for (let i = 0; i < pendingTransactions.length; i++) {
+        try {
+            await processTransaction(pendingTransactions[i]);
+        } catch (error) {
+            console.error('Failed to process pending transaction:', error);
+        }
+    }
+    
+    // Clear processed transactions
+    pendingTransactions = [];
+    localStorage.setItem('pendingTransactions', JSON.stringify(pendingTransactions));
+}
+
+// Enhanced transaction processing with retry logic
+async function processTransaction(transactionData, retryCount = 0) {
+    try {
+        // Simulate API call (replace with actual endpoint)
+        const response = await fetch(`${APP_CONFIG.apiEndpoint}/transfer`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-API-Version': APP_CONFIG.version
+            },
+            body: JSON.stringify(transactionData)
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        return await response.json();
+    } catch (error) {
+        if (retryCount < APP_CONFIG.maxRetries) {
+            console.log(`Retrying transaction (${retryCount + 1}/${APP_CONFIG.maxRetries})...`);
+            await new Promise(resolve => setTimeout(resolve, APP_CONFIG.retryDelay * (retryCount + 1)));
+            return processTransaction(transactionData, retryCount + 1);
+        }
+        throw error;
+    }
+}
+
+// Service Worker Registration
+async function registerServiceWorker() {
+    if ('serviceWorker' in navigator) {
+        try {
+            const registration = await navigator.serviceWorker.register('/sw.js');
+            console.log('Service Worker registered:', registration);
+            
+            // Listen for updates
+            registration.addEventListener('updatefound', () => {
+                const newWorker = registration.installing;
+                newWorker.addEventListener('statechange', () => {
+                    if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                        showMobileAlert('🔄 App update available! Refresh to get the latest version.', 'info');
+                    }
+                });
+            });
+        } catch (error) {
+            console.log('Service Worker registration failed:', error);
+        }
+    }
+}
+
+// Button loading state management
+function setButtonLoading(loading) {
+    if (!sendButton || !btnText || !btnLoader) return;
+    
+    if (loading) {
+        sendButton.disabled = true;
+        btnText.style.display = 'none';
+        btnLoader.style.display = 'inline-block';
+    } else {
+        sendButton.disabled = false;
+        btnText.style.display = 'inline-block';
+        btnLoader.style.display = 'none';
+    }
+}
+
+// Mobile-friendly alert system
+function showMobileAlert(message, type = 'info', details = null) {
+    // Create mobile-friendly notification
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `mobile-alert ${type}`;
+    
+    let content = `<div class="alert-content">`;
+    content += `<div class="alert-message">${message}</div>`;
+    
+    if (details) {
+        content += `<div class="alert-details">`;
+        content += `<div>Transaction ID: ${details.id}</div>`;
+        content += `<div>Amount Sent: ${details.sent}</div>`;
+        content += `<div>Amount Received: ${details.received}</div>`;
+        content += `<div>Fee: ${details.fee}</div>`;
+        content += `</div>`;
+    }
+    
+    content += `<button class="alert-close" onclick="this.parentElement.parentElement.remove()">✕</button>`;
+    content += `</div>`;
+    
+    alertDiv.innerHTML = content;
+    document.body.appendChild(alertDiv);
+    
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        if (alertDiv.parentElement) {
+            alertDiv.remove();
+        }
+    }, 5000);
+}
+
+// Enhanced initialization for mobile features
+function initializeMobileFeatures() {
+    // Initialize DOM elements
+    connectionStatus = document.getElementById('connectionStatus');
+    statusIcon = document.getElementById('statusIcon');
+    statusText = document.getElementById('statusText');
+    sendButton = document.getElementById('sendButton');
+    btnText = sendButton?.querySelector('.btn-text');
+    btnLoader = sendButton?.querySelector('.btn-loader');
+    
+    // Update connection status
+    updateConnectionStatus();
+    
+    // Network status listeners
+    window.addEventListener('online', updateConnectionStatus);
+    window.addEventListener('offline', updateConnectionStatus);
+    
+    // Register service worker
+    registerServiceWorker();
+    
+    // Touch event optimizations
+    document.addEventListener('touchstart', function() {}, { passive: true });
+    
+    // Add focus-visible support for better accessibility
+    try {
+        document.body.classList.add('js-focus-visible');
+    } catch (e) {
+        // Fallback for older browsers
+    }
+    
+    // Handle service worker messages
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.addEventListener('message', event => {
+            if (event.data && event.data.type === 'STORE_FAILED_REQUEST') {
+                // Store failed request in pending transactions
+                pendingTransactions.push(event.data.data);
+                localStorage.setItem('pendingTransactions', JSON.stringify(pendingTransactions));
+            } else if (event.data && event.data.type === 'SYNC_TRANSACTIONS') {
+                // Process pending transactions
+                processPendingTransactions();
+            }
+        });
+    }
+    
+    console.log('Mobile features initialized successfully!');
+}
+
+// Initialize app with mobile features
+function initializeApp() {
+    // Original initialization
+    init();
+    
+    // Mobile and security features
+    initializeMobileFeatures();
+    
+    console.log('EasyMove app with mobile features initialized successfully!');
+}
+
+// Initialize the enhanced app
+initializeApp();
 
 // Update exchange rates (in production, you might do this periodically)
 updateExchangeRates();
