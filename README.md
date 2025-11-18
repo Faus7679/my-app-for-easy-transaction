@@ -4,31 +4,82 @@ EasyMove is an intelligent web application that makes international money transf
 
 ## ✨ Features
 
-- 💰 **Multi-Currency Balance**: View your balance in your preferred currency
-- 🌍 **Automatic Currency Conversion**: Send money in one currency, recipient receives in another
-- 📊 **Real-Time Exchange Rates**: See live conversion rates and amounts
-- 💸 **Smart Transfers**: Intelligent currency handling for seamless transactions
-- 📝 **Transaction History**: Track all transfers with currency conversion details
-- 🔔 **Smart Notifications**: Detailed feedback including conversion information
-- 💾 **Persistent Storage**: Your data and preferences are saved locally
-- 📱 **Responsive Design**: Works perfectly on desktop and mobile devices
-- 🎯 **User Preferences**: Remembers your preferred currencies
+### 👤 **User Account System**
+- **Account Creation**: Secure account setup with First Name, Last Name, Email, and Phone
+- **User Authentication**: Simple email-based login system
+- **Profile Management**: Personalized experience with user preferences
+- **Session Persistence**: Automatic login on return visits
+
+### 💳 **Multiple Payment Methods**
+- **🏦 Bank Transfer**: No additional fees (0%)
+- **💳 Debit Card**: Low fees (+1.5%)
+- **💳 Credit Card**: Standard fees (+2.5%)
+- **📱 Digital Wallet**: Competitive fees (+1.0%)
+- **₿ Cryptocurrency**: Minimal fees (+0.5%)
+
+### 🔒 **Security & Compliance**
+- **ID Verification**: Required for transactions above $2,000 USD
+- **Document Upload**: Secure ID document verification system
+- **Compliance Checks**: Automatic regulatory compliance screening
+- **Fraud Protection**: Multi-tier security based on transaction amount
+
+### 💰 **Advanced Financial Features**
+- **Multi-Currency Balance**: View balance in 80+ global currencies with flags and country names
+- **Smart Fee Structure**: 3-tier pricing based on currency stability and risk
+- **Real-Time Calculations**: Live fee and conversion updates as you type
+- **Transparent Pricing**: Clear breakdown of all fees and charges
+
+### 📊 **Enhanced Transaction History**
+- **Comprehensive Tracking**: Complete transaction records with all details
+- **Advanced Filtering**: Filter by currency, date range, transaction type
+- **Detailed Records**: Payment method, fees, exchange rates, and more
+- **Export Ready**: Transaction IDs and timestamps for record keeping
+
+### 🌍 **Global Currency Support**
+- **80+ Currencies**: Complete coverage including all African nations
+- **Visual Identification**: Country flags and names for easy recognition
+- **Live Conversion**: Real-time exchange rates and conversion preview
+- **Regional Grouping**: Organized by continents and currency unions
+
+### 🎯 **User Experience**
+- **Smart Notifications**: Context-aware messages with transaction details
+- **Responsive Design**: Optimized for desktop, tablet, and mobile
+- **Persistent Preferences**: Remembers your settings and preferences
+- **Intuitive Interface**: Clean, modern design with clear navigation
 
 ## 📖 How to Use
 
+### 🚀 **Getting Started**
 1. **Open the App**: Simply open `index.html` in your web browser
-2. **Set Your Currency**: Choose your preferred currency for balance display
-3. **Check Your Balance**: View your available balance in your chosen currency
-4. **Fill in Transfer Details**:
-   - Enter the recipient's name
-   - Enter their account number or email
-   - Select your sending currency
-   - Specify the amount to transfer
-   - Select the recipient's preferred currency
-   - Add an optional description
-5. **See Live Conversion**: Watch the real-time conversion as you type
-6. **Send Money**: Click the "Send Money" button
-7. **View History**: See all your transactions with currency conversion details
+2. **Create Account**: Enter your First Name, Last Name, Email, and Phone number
+3. **Set Preferences**: Choose your preferred currency for balance display
+
+### 💸 **Making a Transfer**
+1. **Login**: Access your account (automatic if recently used)
+2. **Fill Transfer Details**:
+   - Enter recipient's name and account/email
+   - Select your sending currency from 80+ options
+   - Enter the transfer amount
+   - Choose recipient's preferred currency
+   - Select your payment method
+   - Add optional description
+3. **Review Details**: See live conversion rates, fees, and total cost
+4. **ID Verification**: Upload ID if transferring $2,000+ USD
+5. **Confirm Transfer**: Complete your secure money transfer
+6. **Receive Confirmation**: Get detailed transaction confirmation
+
+### 📊 **Managing Your Account**
+- **View Balance**: Monitor funds in any supported currency
+- **Transaction History**: Access detailed transfer records with advanced filtering
+- **Payment Methods**: Manage multiple payment options
+- **Currency Preferences**: Set and update preferred currencies
+- **Profile Settings**: Update personal information and preferences
+
+### 🔐 **Security Features**
+- **Large Transaction Verification**: Automatic ID verification for high-value transfers
+- **Secure Document Upload**: Safe handling of identification documents
+- **Fraud Protection**: Multi-layer security based on transaction patterns
+- **Compliance Monitoring**: Automatic regulatory compliance checks
 
 ## 🌍 Supported Currencies (50+ Global Currencies)
 
@@ -61,9 +112,15 @@ EasyMove is an intelligent web application that makes international money transf
 - **KES** - Kenyan Shilling | **UGX** - Ugandan Shilling | **TZS** - Tanzanian Shilling | **ETB** - Ethiopian Birr | **RWF** - Rwandan Franc
 - **ZMW** - Zambian Kwacha | **MWK** - Malawian Kwacha | **MZN** - Mozambican Metical
 
-#### West & Central Africa
-- **XOF** - West African CFA Franc (Benin, Burkina Faso, Côte d'Ivoire, Guinea-Bissau, Mali, Niger, Senegal, Togo)
-- **XAF** - Central African CFA Franc (Cameroon, CAR, Chad, Congo, Equatorial Guinea, Gabon)
+#### West African CFA Franc Zone (XOF) - Individual Country Selection
+- **🇧🇯 Benin** | **🇧🇫 Burkina Faso** | **🇨🇮 Côte d'Ivoire** | **🇬🇼 Guinea-Bissau**
+- **🇲🇱 Mali** | **🇳🇪 Niger** | **🇸🇳 Senegal** | **🇹🇬 Togo**
+
+#### Central African CFA Franc Zone (XAF) - Individual Country Selection
+- **🇨🇲 Cameroon** | **🇨🇫 Central African Republic** | **🇹🇩 Chad**
+- **🇨🇬 Republic of the Congo** | **🇬🇶 Equatorial Guinea** | **🇬🇦 Gabon**
+
+#### Other West & Central African Countries
 - **GMD** - Gambian Dalasi | **GNF** - Guinean Franc | **SLL** - Sierra Leonean Leone | **LRD** - Liberian Dollar
 
 #### East Africa & Horn
