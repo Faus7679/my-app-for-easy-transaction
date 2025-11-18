@@ -1595,6 +1595,221 @@ function initializeApp() {
     console.log('EasyMove app with tabs and mobile features initialized successfully!');
 }
 
+// =============================================================================
+// MENU SYSTEM FUNCTIONALITY
+// =============================================================================
+
+// Menu state
+let isMenuOpen = false;
+
+// Initialize Menu System
+function initializeMenu() {
+    const menuToggle = document.getElementById('menuToggle');
+    const slideMenu = document.getElementById('slideMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const closeMenu = document.getElementById('closeMenu');
+    const menuItems = document.querySelectorAll('.menu-item[data-tab]');
+    
+    if (menuToggle) {
+        menuToggle.addEventListener('click', toggleMenu);
+    }
+    
+    if (closeMenu) {
+        closeMenu.addEventListener('click', closeMenuFunc);
+    }
+    
+    if (menuOverlay) {
+        menuOverlay.addEventListener('click', closeMenuFunc);
+    }
+    
+    // Add event listeners to menu items
+    menuItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            const tabId = item.getAttribute('data-tab');
+            switchToTab(tabId);
+            closeMenuFunc();
+        });
+    });
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isMenuOpen) {
+            closeMenuFunc();
+        }
+    });
+}
+
+function toggleMenu() {
+    const menuToggle = document.getElementById('menuToggle');
+    const slideMenu = document.getElementById('slideMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    
+    isMenuOpen = !isMenuOpen;
+    
+    if (isMenuOpen) {
+        openMenu();
+    } else {
+        closeMenuFunc();
+    }
+}
+
+function openMenu() {
+    const menuToggle = document.getElementById('menuToggle');
+    const slideMenu = document.getElementById('slideMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    
+    isMenuOpen = true;
+    menuToggle.classList.add('active');
+    slideMenu.classList.add('active');
+    menuOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeMenuFunc() {
+    const menuToggle = document.getElementById('menuToggle');
+    const slideMenu = document.getElementById('slideMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    
+    isMenuOpen = false;
+    menuToggle.classList.remove('active');
+    slideMenu.classList.remove('active');
+    menuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Global function for closing menu (called from HTML)
+function closeMenu() {
+    closeMenuFunc();
+}
+
+// Switch between tabs
+function switchToTab(tabId) {
+    const tabContents = document.querySelectorAll('.tab-content');
+    const menuItems = document.querySelectorAll('.menu-item[data-tab]');
+    
+    // Hide all tab contents
+    tabContents.forEach(content => content.classList.remove('active'));
+    
+    // Remove active class from all menu items
+    menuItems.forEach(item => item.classList.remove('active'));
+    
+    // Show selected tab content
+    const selectedTab = document.getElementById(tabId);
+    if (selectedTab) {
+        selectedTab.classList.add('active');
+    }
+    
+    // Add active class to selected menu item
+    const selectedMenuItem = document.querySelector(`[data-tab="${tabId}"]`);
+    if (selectedMenuItem) {
+        selectedMenuItem.classList.add('active');
+    }
+    
+    // Initialize tab-specific functionality
+    if (tabId === 'find-locations') {
+        initializeLocations();
+    } else if (tabId === 'track-transfer') {
+        initializeTracking();
+    } else if (tabId === 'language') {
+        initializeLanguageSettings();
+    } else if (tabId === 'tools') {
+        initializeTools();
+    } else if (tabId === 'company') {
+        initializeCompaney();
+    } else if (tabId === 'partnership') {
+        initializePartnership();
+    } else if (tabId === 'qr-downloads') {
+        initializeQRDownloads();
+    }
+}
+
+// =============================================================================
+// NEW TAB FUNCTIONALITIES
+// =============================================================================
+
+// Tools Tab Functions
+function initializeTools() {
+    const calcAmount = document.getElementById('calcAmount');
+    const calcFrom = document.getElementById('calcFrom');
+    const calcTo = document.getElementById('calcTo');
+    const calcResult = document.getElementById('calcResult');
+    
+    if (calcAmount && !calcAmount.hasAttribute('data-initialized')) {
+        calcAmount.setAttribute('data-initialized', 'true');
+        
+        function updateCalculation() {
+            const amount = parseFloat(calcAmount.value);
+            const fromCurrency = calcFrom.value;
+            const toCurrency = calcTo.value;
+            
+            if (amount && amount > 0) {
+                const fromRate = getEffectiveRate(fromCurrency);
+                const toRate = getEffectiveRate(toCurrency);
+                const convertedAmount = (amount * fromRate) / toRate;
+                const fromData = currencyData[fromCurrency];
+                const toData = currencyData[toCurrency];
+                
+                calcResult.innerHTML = `
+                    <strong>${formatCurrency(convertedAmount, getBaseCurrency(toCurrency))}</strong><br>
+                    <small>1 ${getBaseCurrency(fromCurrency)} = ${(fromRate / toRate).toFixed(4)} ${getBaseCurrency(toCurrency)}</small>
+                `;
+            } else {
+                calcResult.textContent = 'Enter amount to convert';
+            }
+        }
+        
+        calcAmount.addEventListener('input', updateCalculation);
+        calcFrom.addEventListener('change', updateCalculation);
+        calcTo.addEventListener('change', updateCalculation);
+    }
+}
+
+// Company Tab Functions
+function initializeCompaney() {
+    // Company tab is mostly static, no special initialization needed
+    console.log('Company tab initialized');
+}
+
+// Partnership Tab Functions
+function initializePartnership() {
+    const contactForm = document.querySelector('.contact-form');
+    
+    if (contactForm && !contactForm.hasAttribute('data-initialized')) {
+        contactForm.setAttribute('data-initialized', 'true');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            showMobileAlert('✅ Partnership inquiry sent! We\'ll contact you within 24 hours.', 'success');
+            contactForm.reset();
+        });
+    }
+}
+
+// QR Downloads Tab Functions
+function initializeQRDownloads() {
+    // Generate actual QR codes (this would typically use a QR code library)
+    // For now, we'll just show placeholder patterns
+    console.log('QR Downloads tab initialized');
+    
+    // You could integrate with a QR code library like qrcode.js here
+    // Example:
+    // QRCode.toCanvas(document.querySelector('.qr-code canvas'), 'https://apps.apple.com/app/easymove');
+}
+
+// Update the original initializeTabs function to work with menu
+function initializeTabs() {
+    // Tab functionality is now handled by the menu system
+    // Keep this function for backward compatibility
+    console.log('Tab system initialized via menu');
+}
+
+// Update the tab system initialization
+function initializeTabSystem() {
+    initializeMenu();
+    // Initialize default tab content
+    initializeLocations();
+    initializeTools();
+}
+
 // Initialize the enhanced app
 initializeApp();
 
