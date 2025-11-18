@@ -1172,6 +1172,429 @@ function initializeApp() {
     console.log('EasyMove app with mobile features initialized successfully!');
 }
 
+// =============================================================================
+// TAB NAVIGATION & NEW FEATURES
+// =============================================================================
+
+// Language settings
+const languages = {
+    en: 'English',
+    es: 'Español',
+    fr: 'Français',
+    de: 'Deutsch',
+    it: 'Italiano',
+    pt: 'Português',
+    ar: 'العربية',
+    zh: '中文',
+    ja: '日本語',
+    ko: '한국어',
+    hi: 'हिन्दी',
+    sw: 'Kiswahili',
+    yo: 'Yorùbá',
+    ha: 'Hausa',
+    ig: 'Igbo'
+};
+
+// Sample locations data
+const sampleLocations = [
+    {
+        id: 1,
+        name: "EasyMove Downtown",
+        address: "23 Stoney park way, Thurmont , ",
+        country: "US",
+        services: ["cash-pickup", "bank-deposit"],
+        hours: "Mon-Fri: 9AM-6PM, Sat: 9AM-4PM",
+        phone: "+1 (240) 926-6314",
+        icon: "🏪"
+    },
+    {
+        id: 2,
+        name: "EasyMove Lagos Central",
+        address: "45 Victoria Island, Lagos, Nigeria",
+        country: "NG",
+        services: ["cash-pickup", "mobile-wallet"],
+        hours: "Mon-Sat: 8AM-7PM",
+        phone: "+234 1 234 5678",
+        icon: "🏪"
+    },
+    {
+        id: 3,
+        name: "EasyMove London Bridge",
+        address: "78 London Bridge Street, London SE1 9SG",
+        country: "GB",
+        services: ["cash-pickup", "bank-deposit"],
+        hours: "Mon-Fri: 9AM-5PM",
+        phone: "+44 20 7123 4567",
+        icon: "🏪"
+    },
+    {
+        id: 4,
+        name: "EasyMove Mumbai Express",
+        address: "Shop 12, Andheri West, Mumbai 400058",
+        country: "IN",
+        services: ["cash-pickup", "mobile-wallet", "bank-deposit"],
+        hours: "Daily: 10AM-8PM",
+        phone: "+91 22 1234 5678",
+        icon: "🏪"
+    },
+    {
+        id: 5,
+        name: "EasyMove Manila Bay",
+        address: "Unit 201, Makati Avenue, Metro Manila",
+        country: "PH",
+        services: ["cash-pickup", "mobile-wallet"],
+        hours: "Mon-Sat: 9AM-6PM",
+        phone: "+63 2 1234 5678",
+        icon: "🏪"
+    }
+];
+
+// Tab Navigation Functions
+function initializeTabs() {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const tabId = button.getAttribute('data-tab');
+            
+            // Remove active class from all buttons and contents
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked button and corresponding content
+            button.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+            
+            // Initialize tab-specific functionality
+            if (tabId === 'find-locations') {
+                initializeLocations();
+            } else if (tabId === 'track-transfer') {
+                initializeTracking();
+            } else if (tabId === 'language') {
+                initializeLanguageSettings();
+            }
+        });
+    });
+}
+
+// Find Locations Functions
+function initializeLocations() {
+    const searchBtn = document.getElementById('searchLocations');
+    const locationSearch = document.getElementById('locationSearch');
+    const serviceFilter = document.getElementById('serviceFilter');
+    const countryFilter = document.getElementById('countryFilter');
+    
+    if (searchBtn && !searchBtn.hasAttribute('data-initialized')) {
+        searchBtn.setAttribute('data-initialized', 'true');
+        searchBtn.addEventListener('click', performLocationSearch);
+        locationSearch.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') performLocationSearch();
+        });
+        serviceFilter.addEventListener('change', performLocationSearch);
+        countryFilter.addEventListener('change', performLocationSearch);
+        
+        // Load initial locations
+        displayLocations(sampleLocations);
+    }
+}
+
+function performLocationSearch() {
+    const searchTerm = document.getElementById('locationSearch').value.toLowerCase();
+    const serviceFilter = document.getElementById('serviceFilter').value;
+    const countryFilter = document.getElementById('countryFilter').value;
+    
+    let filteredLocations = sampleLocations.filter(location => {
+        const matchesSearch = !searchTerm || 
+            location.name.toLowerCase().includes(searchTerm) ||
+            location.address.toLowerCase().includes(searchTerm);
+        
+        const matchesService = serviceFilter === 'all' || 
+            location.services.includes(serviceFilter);
+        
+        const matchesCountry = countryFilter === 'all' || 
+            location.country === countryFilter;
+        
+        return matchesSearch && matchesService && matchesCountry;
+    });
+    
+    displayLocations(filteredLocations);
+}
+
+function displayLocations(locations) {
+    const resultsContainer = document.getElementById('locationsResults');
+    
+    if (locations.length === 0) {
+        resultsContainer.innerHTML = `
+            <div style="text-align: center; padding: 40px; color: #666;">
+                <span style="font-size: 48px;">🔍</span>
+                <h3>No locations found</h3>
+                <p>Try adjusting your search criteria or filters.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    resultsContainer.innerHTML = locations.map(location => `
+        <div class="location-item">
+            <div class="location-icon">${location.icon}</div>
+            <div class="location-details">
+                <h4>${location.name}</h4>
+                <p>${location.address}</p>
+                <p><strong>Hours:</strong> ${location.hours}</p>
+                <p><strong>Phone:</strong> ${location.phone}</p>
+            </div>
+            <div class="location-services">
+                ${location.services.map(service => 
+                    `<span class="service-tag">${service.replace('-', ' ')}</span>`
+                ).join('')}
+            </div>
+        </div>
+    `).join('');
+}
+
+// Track Transfer Functions
+function initializeTracking() {
+    const trackBtn = document.getElementById('trackTransfer');
+    const trackingId = document.getElementById('trackingId');
+    
+    if (trackBtn && !trackBtn.hasAttribute('data-initialized')) {
+        trackBtn.setAttribute('data-initialized', 'true');
+        trackBtn.addEventListener('click', performTracking);
+        trackingId.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') performTracking();
+        });
+    }
+}
+
+function performTracking() {
+    const trackingId = document.getElementById('trackingId').value.trim();
+    const trackingPhone = document.getElementById('trackingPhone').value.trim();
+    const resultsContainer = document.getElementById('trackingResults');
+    
+    if (!trackingId) {
+        showMobileAlert('Please enter a transaction ID or reference number', 'error');
+        return;
+    }
+    
+    // Show loading state
+    resultsContainer.style.display = 'block';
+    resultsContainer.innerHTML = `
+        <div style="text-align: center; padding: 40px;">
+            <div class="loading-spinner">🔍</div>
+            <p>Searching for your transfer...</p>
+        </div>
+    `;
+    
+    // Simulate API call
+    setTimeout(() => {
+        // Check if it's one of our transactions
+        const transaction = currentUser?.transactions?.find(t => 
+            t.id === trackingId || t.id.includes(trackingId.slice(-6))
+        );
+        
+        if (transaction) {
+            displayTrackingResults(transaction);
+        } else {
+            // Show sample tracking result
+            displaySampleTrackingResults(trackingId);
+        }
+    }, 1500);
+}
+
+function displayTrackingResults(transaction) {
+    const resultsContainer = document.getElementById('trackingResults');
+    const statusClass = transaction.status === 'completed' ? 'completed' : 
+                       transaction.status === 'processing' ? 'processing' : 'pending';
+    
+    resultsContainer.innerHTML = `
+        <div class="transfer-status">
+            <div class="status-indicator ${statusClass}">
+                <span>${transaction.status === 'completed' ? '✅' : 
+                       transaction.status === 'processing' ? '⏳' : '🔄'}</span>
+                <span>${transaction.status.toUpperCase()}</span>
+            </div>
+            <h3>Transfer ID: ${transaction.id}</h3>
+            <p><strong>Amount:</strong> ${formatCurrency(transaction.senderAmount, transaction.senderCurrency)} → ${formatCurrency(transaction.recipientAmount, transaction.recipientCurrency)}</p>
+            <p><strong>Date:</strong> ${new Date(transaction.date).toLocaleDateString()}</p>
+        </div>
+        
+        <div class="transfer-timeline">
+            <div class="timeline-item completed">
+                <div class="timeline-content">
+                    <h4>Transfer Initiated</h4>
+                    <p>Your transfer has been received and is being processed</p>
+                    <div class="timeline-time">${new Date(transaction.date).toLocaleString()}</div>
+                </div>
+            </div>
+            <div class="timeline-item ${transaction.status !== 'pending' ? 'completed' : ''}">
+                <div class="timeline-content">
+                    <h4>Processing Payment</h4>
+                    <p>Verifying payment method and processing transfer</p>
+                    <div class="timeline-time">${transaction.status !== 'pending' ? new Date(Date.now() - 3600000).toLocaleString() : 'Pending'}</div>
+                </div>
+            </div>
+            <div class="timeline-item ${transaction.status === 'completed' ? 'completed' : ''}">
+                <div class="timeline-content">
+                    <h4>Transfer Complete</h4>
+                    <p>Funds have been delivered to recipient</p>
+                    <div class="timeline-time">${transaction.status === 'completed' ? new Date(Date.now() - 1800000).toLocaleString() : 'Pending'}</div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function displaySampleTrackingResults(trackingId) {
+    const resultsContainer = document.getElementById('trackingResults');
+    
+    resultsContainer.innerHTML = `
+        <div class="transfer-status">
+            <div class="status-indicator processing">
+                <span>⏳</span>
+                <span>PROCESSING</span>
+            </div>
+            <h3>Transfer ID: ${trackingId}</h3>
+            <p><strong>Amount:</strong> $500.00 USD → ₦205,000.00 NGN</p>
+            <p><strong>Estimated Delivery:</strong> Within 2-4 hours</p>
+        </div>
+        
+        <div class="transfer-timeline">
+            <div class="timeline-item completed">
+                <div class="timeline-content">
+                    <h4>Transfer Initiated</h4>
+                    <p>Your transfer has been received and is being processed</p>
+                    <div class="timeline-time">${new Date(Date.now() - 7200000).toLocaleString()}</div>
+                </div>
+            </div>
+            <div class="timeline-item completed">
+                <div class="timeline-content">
+                    <h4>Payment Verified</h4>
+                    <p>Payment method verified and funds secured</p>
+                    <div class="timeline-time">${new Date(Date.now() - 3600000).toLocaleString()}</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Ready for Pickup</h4>
+                    <p>Funds are ready for pickup at the destination</p>
+                    <div class="timeline-time">Estimated: ${new Date(Date.now() + 3600000).toLocaleString()}</div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Language Settings Functions
+function initializeLanguageSettings() {
+    const saveBtn = document.getElementById('saveLanguageSettings');
+    const resetBtn = document.getElementById('resetLanguageSettings');
+    
+    if (saveBtn && !saveBtn.hasAttribute('data-initialized')) {
+        saveBtn.setAttribute('data-initialized', 'true');
+        saveBtn.addEventListener('click', saveLanguageSettings);
+        resetBtn.addEventListener('click', resetLanguageSettings);
+        
+        // Load saved settings
+        loadLanguageSettings();
+    }
+}
+
+function saveLanguageSettings() {
+    const settings = {
+        language: document.getElementById('appLanguage').value,
+        dateFormat: document.getElementById('dateFormat').value,
+        numberFormat: document.getElementById('numberFormat').value,
+        timeZone: document.getElementById('timeZone').value
+    };
+    
+    localStorage.setItem('easymove_language_settings', JSON.stringify(settings));
+    showMobileAlert('✅ Language settings saved successfully!', 'success');
+    
+    // Apply settings immediately
+    applyLanguageSettings(settings);
+}
+
+function loadLanguageSettings() {
+    const saved = localStorage.getItem('easymove_language_settings');
+    if (saved) {
+        const settings = JSON.parse(saved);
+        document.getElementById('appLanguage').value = settings.language || 'en';
+        document.getElementById('dateFormat').value = settings.dateFormat || 'MM/DD/YYYY';
+        document.getElementById('numberFormat').value = settings.numberFormat || '1,234.56';
+        document.getElementById('timeZone').value = settings.timeZone || 'UTC';
+        
+        applyLanguageSettings(settings);
+    }
+}
+
+function resetLanguageSettings() {
+    document.getElementById('appLanguage').value = 'en';
+    document.getElementById('dateFormat').value = 'MM/DD/YYYY';
+    document.getElementById('numberFormat').value = '1,234.56';
+    document.getElementById('timeZone').value = 'UTC';
+    
+    localStorage.removeItem('easymove_language_settings');
+    showMobileAlert('🔄 Language settings reset to default', 'info');
+}
+
+function applyLanguageSettings(settings) {
+    // Apply language settings to the app
+    // This would typically involve loading language files and updating UI text
+    console.log('Applying language settings:', settings);
+    
+    // Set HTML lang attribute
+    document.documentElement.lang = settings.language || 'en';
+    
+    // Update date/time displays throughout the app
+    updateDateTimeDisplays(settings);
+}
+
+function updateDateTimeDisplays(settings) {
+    // Update all date/time displays in the app based on user preferences
+    const dateElements = document.querySelectorAll('.transaction-date, .timeline-time');
+    dateElements.forEach(element => {
+        if (element.dataset.timestamp) {
+            const date = new Date(parseInt(element.dataset.timestamp));
+            element.textContent = formatDateByPreference(date, settings);
+        }
+    });
+}
+
+function formatDateByPreference(date, settings) {
+    const options = {
+        timeZone: settings.timeZone || 'UTC',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit'
+    };
+    
+    return date.toLocaleString(settings.language || 'en', options);
+}
+
+// Initialize all tab functionality
+function initializeTabSystem() {
+    initializeTabs();
+    // Initialize default tab content
+    initializeLocations();
+}
+
+// Initialize the enhanced app with tabs
+function initializeApp() {
+    // Original initialization
+    init();
+    
+    // Tab system
+    initializeTabSystem();
+    
+    // Mobile and security features
+    initializeMobileFeatures();
+    
+    console.log('EasyMove app with tabs and mobile features initialized successfully!');
+}
+
 // Initialize the enhanced app
 initializeApp();
 
