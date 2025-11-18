@@ -48,27 +48,91 @@
                 <span id="welcomeMessage"></span>
                 <button id="logoutBtn" class="btn-secondary">Logout</button>
             </div>
+            <!-- Menu Toggle Button -->
+            <button id="menuToggle" class="menu-toggle">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </header>
 
-        <!-- Navigation Tabs -->
-        <nav class="tab-navigation">
-            <button class="tab-btn active" data-tab="send-money">
-                <span class="tab-icon">💸</span>
-                <span class="tab-text">Send Money</span>
-            </button>
-            <button class="tab-btn" data-tab="find-locations">
-                <span class="tab-icon">📍</span>
-                <span class="tab-text">Locations</span>
-            </button>
-            <button class="tab-btn" data-tab="track-transfer">
-                <span class="tab-icon">🔍</span>
-                <span class="tab-text">Track</span>
-            </button>
-            <button class="tab-btn" data-tab="language">
-                <span class="tab-icon">🌐</span>
-                <span class="tab-text">Language</span>
-            </button>
+        <!-- Slide-out Menu -->
+        <nav class="slide-menu" id="slideMenu">
+            <div class="menu-header">
+                <h3>🚀 EasyMove Menu</h3>
+                <button id="closeMenu" class="close-menu">✕</button>
+            </div>
+            
+            <div class="menu-content">
+                <!-- Main Navigation -->
+                <div class="menu-section">
+                    <h4>💼 Services</h4>
+                    <ul class="menu-list">
+                        <li><button class="menu-item active" data-tab="send-money">
+                            <span class="menu-icon">💸</span>
+                            <span class="menu-text">Send Money</span>
+                        </button></li>
+                        <li><button class="menu-item" data-tab="find-locations">
+                            <span class="menu-icon">📍</span>
+                            <span class="menu-text">Find Locations</span>
+                        </button></li>
+                        <li><button class="menu-item" data-tab="track-transfer">
+                            <span class="menu-icon">🔍</span>
+                            <span class="menu-text">Track Transfer</span>
+                        </button></li>
+                        <li><button class="menu-item" data-tab="language">
+                            <span class="menu-icon">🌐</span>
+                            <span class="menu-text">Language Settings</span>
+                        </button></li>
+                    </ul>
+                </div>
+                
+                <!-- Resources Section -->
+                <div class="menu-section">
+                    <h4>📚 Resources</h4>
+                    <ul class="menu-list">
+                        <li><button class="menu-item" data-tab="tools">
+                            <span class="menu-icon">🛠️</span>
+                            <span class="menu-text">Tools</span>
+                        </button></li>
+                        <li><button class="menu-item" data-tab="company">
+                            <span class="menu-icon">🏢</span>
+                            <span class="menu-text">Company</span>
+                        </button></li>
+                        <li><button class="menu-item" data-tab="partnership">
+                            <span class="menu-icon">🤝</span>
+                            <span class="menu-text">Partnership</span>
+                        </button></li>
+                        <li><button class="menu-item" data-tab="qr-downloads">
+                            <span class="menu-icon">📱</span>
+                            <span class="menu-text">Mobile App</span>
+                        </button></li>
+                    </ul>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="menu-section">
+                    <h4>⚡ Quick Actions</h4>
+                    <ul class="menu-list">
+                        <li><button class="menu-item" onclick="showAccountModal(); closeMenu();">
+                            <span class="menu-icon">👤</span>
+                            <span class="menu-text">My Account</span>
+                        </button></li>
+                        <li><button class="menu-item" onclick="showTransactionHistory(); closeMenu();">
+                            <span class="menu-icon">📊</span>
+                            <span class="menu-text">Transaction History</span>
+                        </button></li>
+                        <li><button class="menu-item" onclick="showPaymentMethods(); closeMenu();">
+                            <span class="menu-icon">💳</span>
+                            <span class="menu-text">Payment Methods</span>
+                        </button></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
+        
+        <!-- Menu Overlay -->
+        <div class="menu-overlay" id="menuOverlay"></div>
 
         <main>
             <!-- Send Money Tab Content -->
@@ -597,6 +661,295 @@
                 </div>
             </div>
             <!-- End Language Tab -->
+            
+            <!-- Tools Tab Content -->
+            <div id="tools" class="tab-content">
+                <div class="tools-container">
+                    <div class="tools-header">
+                        <h2>🛠️ Financial Tools</h2>
+                        <p>Helpful tools for your money transfers and financial planning</p>
+                    </div>
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <div class="tool-icon">📊</div>
+                            <h3>Currency Calculator</h3>
+                            <p>Advanced currency conversion with historical rates</p>
+                            <div class="calculator-widget">
+                                <input type="number" id="calcAmount" placeholder="Enter amount" class="calc-input">
+                                <select id="calcFrom" class="calc-select">
+                                    <option value="USD">🇺🇸 USD</option>
+                                    <option value="EUR_DE">🇩🇪 EUR</option>
+                                    <option value="GBP">🇬🇧 GBP</option>
+                                    <option value="NGN">🇳🇬 NGN</option>
+                                </select>
+                                <span class="calc-arrow">→</span>
+                                <select id="calcTo" class="calc-select">
+                                    <option value="NGN">🇳🇬 NGN</option>
+                                    <option value="USD">🇺🇸 USD</option>
+                                    <option value="EUR_DE">🇩🇪 EUR</option>
+                                    <option value="GBP">🇬🇧 GBP</option>
+                                </select>
+                                <div id="calcResult" class="calc-result">Enter amount to convert</div>
+                            </div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">📈</div>
+                            <h3>Rate Alerts</h3>
+                            <p>Get notified when exchange rates hit your target</p>
+                            <button class="tool-btn">Set Rate Alert</button>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">💰</div>
+                            <h3>Fee Calculator</h3>
+                            <p>Calculate transfer fees for different amounts and destinations</p>
+                            <button class="tool-btn">Calculate Fees</button>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">⏰</div>
+                            <h3>Transfer Time Estimator</h3>
+                            <p>Estimate delivery times for different corridors</p>
+                            <button class="tool-btn">Check Time</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Tools Tab -->
+            
+            <!-- Company Tab Content -->
+            <div id="company" class="tab-content">
+                <div class="company-container">
+                    <div class="company-header">
+                        <h2>🏢 About EasyMove</h2>
+                        <p>Your trusted partner for global money transfers</p>
+                    </div>
+                    <div class="company-content">
+                        <div class="company-section">
+                            <h3>📋 Our Mission</h3>
+                            <p>To make international money transfers simple, secure, and affordable for everyone. We bridge distances and connect families across the globe through innovative financial technology.</p>
+                        </div>
+                        <div class="company-section">
+                            <h3>🌟 Why Choose EasyMove?</h3>
+                            <div class="features-grid">
+                                <div class="feature-item">
+                                    <span class="feature-icon">🔒</span>
+                                    <span class="feature-text">Bank-level security</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">⚡</span>
+                                    <span class="feature-text">Lightning fast transfers</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">💰</span>
+                                    <span class="feature-text">Competitive rates</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">🌍</span>
+                                    <span class="feature-text">Global coverage</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">📱</span>
+                                    <span class="feature-text">Mobile-first design</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">🎯</span>
+                                    <span class="feature-text">Transparent pricing</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="company-section">
+                            <h3>📞 Contact Us</h3>
+                            <div class="contact-info">
+                                <div class="contact-item">
+                                    <span class="contact-icon">📧</span>
+                                    <span>support@easymove.app</span>
+                                </div>
+                                <div class="contact-item">
+                                    <span class="contact-icon">📞</span>
+                                    <span>+1 (555) EASYMOV</span>
+                                </div>
+                                <div class="contact-item">
+                                    <span class="contact-icon">💬</span>
+                                    <span>24/7 Live Chat</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="company-section">
+                            <h3>🏆 Certifications & Licenses</h3>
+                            <div class="certifications">
+                                <div class="cert-badge">🏦 FDIC Insured</div>
+                                <div class="cert-badge">🛡️ SOC 2 Compliant</div>
+                                <div class="cert-badge">✅ Licensed MSB</div>
+                                <div class="cert-badge">🔐 PCI DSS Level 1</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Company Tab -->
+            
+            <!-- Partnership Tab Content -->
+            <div id="partnership" class="tab-content">
+                <div class="partnership-container">
+                    <div class="partnership-header">
+                        <h2>🤝 Partnership Opportunities</h2>
+                        <p>Join our network and grow your business with EasyMove</p>
+                    </div>
+                    <div class="partnership-content">
+                        <div class="partnership-types">
+                            <div class="partnership-card">
+                                <div class="partnership-icon">🏪</div>
+                                <h3>Agent Partnership</h3>
+                                <p>Become a cash pickup location and earn commission on every transaction</p>
+                                <ul class="partnership-benefits">
+                                    <li>✅ Competitive commission rates</li>
+                                    <li>✅ Marketing support</li>
+                                    <li>✅ Real-time dashboard</li>
+                                    <li>✅ Training provided</li>
+                                </ul>
+                                <button class="partnership-btn">Apply Now</button>
+                            </div>
+                            <div class="partnership-card">
+                                <div class="partnership-icon">🏦</div>
+                                <h3>Bank Partnership</h3>
+                                <p>Integrate our API and offer money transfer services to your customers</p>
+                                <ul class="partnership-benefits">
+                                    <li>✅ White-label solution</li>
+                                    <li>✅ API integration</li>
+                                    <li>✅ Revenue sharing</li>
+                                    <li>✅ Technical support</li>
+                                </ul>
+                                <button class="partnership-btn">Learn More</button>
+                            </div>
+                            <div class="partnership-card">
+                                <div class="partnership-icon">📱</div>
+                                <h3>Fintech Partnership</h3>
+                                <p>Collaborate with us to expand your financial services offering</p>
+                                <ul class="partnership-benefits">
+                                    <li>✅ Co-branded solutions</li>
+                                    <li>✅ Shared technology</li>
+                                    <li>✅ Market expansion</li>
+                                    <li>✅ Joint marketing</li>
+                                </ul>
+                                <button class="partnership-btn">Contact Us</button>
+                            </div>
+                        </div>
+                        <div class="partnership-form">
+                            <h3>📧 Get in Touch</h3>
+                            <form class="contact-form">
+                                <div class="form-row">
+                                    <input type="text" placeholder="Company Name" class="form-input">
+                                    <input type="email" placeholder="Email Address" class="form-input">
+                                </div>
+                                <div class="form-row">
+                                    <select class="form-select">
+                                        <option>Partnership Type</option>
+                                        <option>Agent Partnership</option>
+                                        <option>Bank Partnership</option>
+                                        <option>Fintech Partnership</option>
+                                        <option>Other</option>
+                                    </select>
+                                    <input type="tel" placeholder="Phone Number" class="form-input">
+                                </div>
+                                <textarea placeholder="Tell us about your business and partnership goals..." class="form-textarea"></textarea>
+                                <button type="submit" class="form-submit">Send Partnership Inquiry</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Partnership Tab -->
+            
+            <!-- QR Downloads Tab Content -->
+            <div id="qr-downloads" class="tab-content">
+                <div class="qr-container">
+                    <div class="qr-header">
+                        <h2>📱 Download EasyMove App</h2>
+                        <p>Get the full EasyMove experience on your mobile device</p>
+                    </div>
+                    <div class="qr-content">
+                        <div class="qr-section">
+                            <div class="qr-card">
+                                <h3>📱 iOS App Store</h3>
+                                <div class="qr-code">
+                                    <div class="qr-placeholder">
+                                        <div class="qr-pattern"></div>
+                                        <div class="qr-logo">🍎</div>
+                                    </div>
+                                </div>
+                                <p>Scan to download for iPhone & iPad</p>
+                                <div class="store-buttons">
+                                    <a href="#" class="store-btn ios-btn">
+                                        <span class="store-icon">🍎</span>
+                                        <div class="store-text">
+                                            <small>Download on the</small>
+                                            <strong>App Store</strong>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="qr-card">
+                                <h3>🤖 Google Play Store</h3>
+                                <div class="qr-code">
+                                    <div class="qr-placeholder">
+                                        <div class="qr-pattern"></div>
+                                        <div class="qr-logo">📱</div>
+                                    </div>
+                                </div>
+                                <p>Scan to download for Android devices</p>
+                                <div class="store-buttons">
+                                    <a href="#" class="store-btn android-btn">
+                                        <span class="store-icon">📱</span>
+                                        <div class="store-text">
+                                            <small>Get it on</small>
+                                            <strong>Google Play</strong>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="app-features">
+                            <h3>✨ Mobile App Features</h3>
+                            <div class="features-list">
+                                <div class="feature-row">
+                                    <span class="feature-check">✅</span>
+                                    <span>Send money on the go</span>
+                                </div>
+                                <div class="feature-row">
+                                    <span class="feature-check">✅</span>
+                                    <span>Push notifications for transfer updates</span>
+                                </div>
+                                <div class="feature-row">
+                                    <span class="feature-check">✅</span>
+                                    <span>Biometric authentication (Face ID/Fingerprint)</span>
+                                </div>
+                                <div class="feature-row">
+                                    <span class="feature-check">✅</span>
+                                    <span>Offline mode with sync when online</span>
+                                </div>
+                                <div class="feature-row">
+                                    <span class="feature-check">✅</span>
+                                    <span>GPS-based location finder</span>
+                                </div>
+                                <div class="feature-row">
+                                    <span class="feature-check">✅</span>
+                                    <span>Dark mode support</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="qr-info">
+                            <h3>📋 How to Use QR Codes</h3>
+                            <ol class="instruction-list">
+                                <li>Open your phone's camera app</li>
+                                <li>Point the camera at the QR code</li>
+                                <li>Tap the notification that appears</li>
+                                <li>You'll be redirected to the app store</li>
+                                <li>Tap "Install" to download the app</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End QR Downloads Tab -->
         </main>
 
         <div id="notification" class="notification hidden"></div>
