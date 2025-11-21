@@ -316,12 +316,10 @@ const transactionSchema = new mongoose.Schema({
 });
 
 // Indexes for performance and queries
-transactionSchema.index({ transactionId: 1 }, { unique: true });
 transactionSchema.index({ sender: 1, status: 1 });
 transactionSchema.index({ 'recipient.email': 1 });
 transactionSchema.index({ status: 1, createdAt: -1 });
 transactionSchema.index({ paymentId: 1 });
-transactionSchema.index({ createdAt: -1 });
 transactionSchema.index({ 'processingInfo.trackingNumber': 1 });
 
 // Pre-save middleware to generate transaction ID
